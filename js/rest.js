@@ -33,12 +33,19 @@ function getLogin(usario, contraseña) {
                 if (pantallaActual == "opciones envio") {
 
                     if (OPCIONENTREGA == "dom") {
+
                         displayDomicilioForm(OPCIONENTREGA, SEND_INFO.price_dom.taxPrice, SEND_INFO.price_dom.totalPrice, SEND_INFO.price_dom.basePrice);
+                        cargaDatosUsuarioAFormularioRegistro();
+
+                    } else if ((OPCIONPEDIDO == 3 && OPCIONENTREGA == 'shop' && OPCIONENVIO == 2) || (OPCIONPEDIDO == 2 && OPCIONENTREGA == 'shop' && OPCIONENVIO == 2)) {
+
+                        pagarEnCajaPrevioPago();
+
                     } else {
                         displayDomicilioForm(OPCIONENTREGA, SEND_INFO.price_shop.taxPrice, SEND_INFO.price_shop.totalPrice, SEND_INFO.price_shop.basePrice);
                     }
 
-                    cargaDatosUsuarioAFormularioRegistro();
+
 
                 }
 
@@ -103,7 +110,7 @@ function getLogin(usario, contraseña) {
 
 
 //WS para realizar el registro del usuario
-function getRegistro(usario, contraseña, cod_pos) {
+function getRegistro(usario, contraseña, cod_pos, pago) {
 
     // Datos que se van a enviar
     var dataSend = {
@@ -123,9 +130,21 @@ function getRegistro(usario, contraseña, cod_pos) {
             if (response.result == 1) {
 
                 console.log(response);
-                displayLogin();
-                $("#usrnm").val(usario);
+                //displayLogin();
+                //$("#usrnm").val(usario);
 
+                if (pago == "pago") {
+                    $("#login").text("Bienvenido/a " + usario + ","); // + usario + "
+                    $('#login').attr('onclick', "logout()");
+                    $("#login").append('<img src="http://partyfiesta.youtter.com/webservices/img/nodos/salir.jpg" style="width: 15px;margin-top: 0px;">');
+
+                    pagarEnCajaPrevioPago();
+
+                } else {
+                    console.log(response);
+                    displayLogin();
+                    $("#usrnm").val(usario);
+                }
 
             } else if (parseInt(response.result) == -2) {
 
@@ -1526,11 +1545,48 @@ function sendEmail(pantallaIntermediaPago) {
 
     } else {
 
+        var prodAux = [];
+
+        if (OPCIONPEDIDO == 3) {
+            var aux = 0;
+            for (var i = 0; i < CART.length; i++) {
+
+                if (parseInt(CART[i].stock_x_store) > 0) { //se envian solo los articulos que se tienen que recoger en tienda
+                    //console.log(CART[i]);
+                    if (CART[i].online_quantity > 0) {
+                        prodAux[aux] = CART[i];
+                        prodAux[aux].quantity = prodAux[aux].store_quantity;
+                    } else {
+                        prodAux[aux] = CART[i];
+                    }
+                    aux++;
+                }
+            }
+
+        } else {
+            var aux = 0;
+            for (var i = 0; i < CART.length; i++) {
+
+                if (parseInt(CART[i].stock_x_store) > 0) { //se envian solo los articulos que se tienen que recoger en tienda
+                    if (CART[i].online_quantity > 0) {
+                        prodAux[aux] = CART[i];
+                        prodAux[aux].quantity = prodAux[aux].store_quantity;
+                    } else {
+                        prodAux[aux] = CART[i];
+                    }
+                    aux++;
+                }
+            }
+        }
+
+        console.log("Prod a enviar");
+        console.log(prodAux);
+
         $("#popupEmail").popup("close");
 
         var dataSend = {
             email: EMAIL_USER,
-            carrito: CART,
+            carrito: prodAux,
             store_email: STORE.email
         };
 
@@ -2306,13 +2362,25 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
     var totalPriceCount = 0;
 
     var price = {};
-    price = PRECIOSENVIO;
+    //price = PRECIOSENVIO;
 
-    for (var i = 0; i < CART.length; i++) {
-        basePriceCount += parseFloat(CART[i].price_x_region[0].basePrice);
-        taxPriceCount += parseFloat(CART[i].price_x_region[0].taxPrice);
-        totalPriceCount += parseFloat(CART[i].price_x_region[0].totalPrice);
+    if (OPCIONENTREGA == 'dom') {
+
+        price = SEND_INFO.price_dom;
+
+    } else {
+
+        if (SEND_INFO.price_shop.result < 0) { //no hay gastos de envio xq no llega al pedido minimo
+
+            price = SEND_INFO.price_dom;
+
+        } else {
+            price = SEND_INFO.price_shop;
+        }
+
     }
+
+    PRECIOSENVIO = price;
 
     var type = "";
 
@@ -2324,8 +2392,77 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
 
     console.log("Info usu " + INFO_USU);
 
+
+    var prodAux = [];
+
+    if (OPCIONPEDIDO == 3) { //recoge los articulos de tienda y paga el online solo enviamos los articulos online
+        var aux = 0;
+        for (var i = 0; i < CART.length; i++) {
+
+            if (CART[i].stock_x_store == 0 && CART[i].stock_x_central_store > 0) {
+
+                prodAux[aux] = CART[i];
+                aux++;
+
+            } else {
+
+                if (CART[i].online_quantity > 0) { //se añaden tambien los prod que tienen parte online
+                    prodAux[aux] = CART[i];
+                    prodAux[aux].quantity = CART[i].online_quantity;
+                    aux++;
+                }
+
+            }
+        }
+    } else {
+        prodAux = CART;
+    }
+
+    for (var i = 0; i < prodAux.length; i++) {
+        console.log("Prod a enviar");
+        console.log(prodAux[i]);
+        basePriceCount += parseFloat(prodAux[i].price_x_region[0].basePrice) * prodAux[i].quantity;
+        taxPriceCount += parseFloat(prodAux[i].price_x_region[0].taxPrice) * prodAux[i].quantity;
+        totalPriceCount += parseFloat(prodAux[i].price_x_region[0].totalPrice) * prodAux[i].quantity;
+    }
+
+    console.log("Productos a enviar es:");
+    console.log(prodAux);
+
+    if (OPCIONENVIO == 2) {
+
+        var deliveryAddress = STORE.address;
+        var deliveryPostalCode = STORE.postalCode;
+        var deliveryCity = STORE.city;
+        var deliveryProvince = STORE.province;
+        var deliveryCountry = STORE.country;
+        var deliveryPhone = STORE.phone;
+        var billingAddress = STORE.address;
+        var billingPostalCode = STORE.postalCode;
+        var billingCity = STORE.city;
+        var billingProvince = STORE.province;
+        var billingCountry = STORE.country;
+        var billingPhone = STORE.phone;
+
+    } else {
+
+        var deliveryAddress = INFO_USU.address;
+        var deliveryPostalCode = INFO_USU.postalCode;
+        var deliveryCity = INFO_USU.city;
+        var deliveryProvince = INFO_USU.province;
+        var deliveryCountry = INFO_USU.country;
+        var deliveryPhone = INFO_USU.phone;
+        var billingAddress = INFO_USU.billingAddress;
+        var billingPostalCode = INFO_USU.billingPC;
+        var billingCity = INFO_USU.billingCity;
+        var billingProvince = INFO_USU.billingProvince;
+        var billingCountry = INFO_USU.billingCountry;
+        var billingPhone = INFO_USU.billingPhone;
+
+    }
+
     var dataSend = {
-        products: CART,
+        products: prodAux,
         origin: origin,
         type: type, //normal freeOfCharge
         sector: "null",
@@ -2335,18 +2472,18 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
         paymentMethod: paymentMethod, //metodo de pago (creditCard, paypal, bankTransfer, Caja)
         region: INFO_USU.region,
 
-        deliveryAddress: INFO_USU.address,
-        deliveryPostalCode: INFO_USU.postalCode,
-        deliveryCity: INFO_USU.city,
-        deliveryProvince: INFO_USU.province,
-        deliveryCountry: INFO_USU.country,
-        deliveryPhone: INFO_USU.phone,
-        billingAddress: INFO_USU.billingAddress,
-        billingPostalCode: INFO_USU.billingPC,
-        billingCity: INFO_USU.billingCity,
-        billingProvince: INFO_USU.billingProvince,
-        billingCountry: INFO_USU.billingCountry,
-        billingPhone: INFO_USU.billingPhone,
+        deliveryAddress: deliveryAddress,
+        deliveryPostalCode: deliveryPostalCode,
+        deliveryCity: deliveryCity,
+        deliveryProvince: deliveryProvince,
+        deliveryCountry: deliveryCountry,
+        deliveryPhone: deliveryPhone,
+        billingAddress: billingAddress,
+        billingPostalCode: billingPostalCode,
+        billingCity: billingCity,
+        billingProvince: billingProvince,
+        billingCountry: billingCountry,
+        billingPhone: billingPhone,
 
         productsBasePrice: parseFloat(basePriceCount),
         productsTaxPrice: parseFloat(taxPriceCount),
@@ -2356,9 +2493,9 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
         shippingTaxPrice: parseFloat(price.taxPrice),
         shippingTotalPrice: parseFloat(price.totalPrice),
 
-        basePrice: parseFloat(basePriceCount + price.basePrice),
-        taxPrice: parseFloat(taxPriceCount + price.taxPrice),
-        totalPrice: parseFloat(totalPriceCount + price.totalPrice),
+        basePrice: parseFloat(basePriceCount) + parseFloat(price.basePrice),
+        taxPrice: parseFloat(taxPriceCount) + parseFloat(price.taxPrice),
+        totalPrice: parseFloat(totalPriceCount) + parseFloat(price.totalPrice),
 
         internalShippingCost: "null",
 

@@ -89,18 +89,18 @@ function addCartAsistFiestas(prod_id) {
                     var num_uni = caracteristicas[j].name;
                     var units = num_uni.split(' ');
 
-                    //console.log("Encontrada car. Unidades es " + units[0]);
+                    console.log("Encontrada car. Unidades es " + units[0]);
 
                     if (parseInt(units[0]) >= parseInt(num_personas_fiesta) && parseInt(units[0]) > 1) { //el articulo tiene suficientes para el grupo
 
-                        //console.log("Unidades es1 " + units[0] + " se añade 1");
+                        console.log("Unidades es1 " + units[0] + " se añade 1");
                         addToCart(PRODUCTS[k].id, 1);
                         aux = 1;
 
                     } else if (parseInt(units[0]) < parseInt(num_personas_fiesta) && parseInt(units[0]) > 1) {
 
                         addToCart(PRODUCTS[k].id, Math.ceil(parseInt(num_personas_fiesta) / parseInt(units[0])));
-                        //console.log("Math " + Math.ceil(parseInt(num_personas_fiesta) / parseInt(units[0])));
+                        console.log("Math " + Math.ceil(parseInt(num_personas_fiesta) / parseInt(units[0])));
                         aux = 1;
 
                     } else { //mas personas que unidades del articulo
@@ -113,7 +113,7 @@ function addCartAsistFiestas(prod_id) {
                 }
             }
 
-            //console.log("Aux es " + aux); // si es cerno no tiene unidades pondremos que es uno
+            console.log("Aux es " + aux); // si es cerno no tiene unidades pondremos que es uno
 
             if (aux == 0 && PRODUCTS[k].name != "" && PRODUCTS[k].price_x_region.length > 0) { //en el caso que no tengamos unidades se añade uno solo
                 addToCart(PRODUCTS[k].id, 1);
@@ -303,9 +303,6 @@ function sleep(millisegundos) {
 function volver(id_product, idnodo) {
 
     $("#popupListItems").popup("close");
-    /*setTimeout(function () {
-            $("#popupListItems").popup("open");
-        }, popupTimeout);*/
     displayPopupItemDetail(idnodo, 'PRODUCTOS', id_product);
 
 }
@@ -441,7 +438,7 @@ function updateOpcionCompraProducto() { // dev 29-03-2016
 
         if (CART.length - CART.productosEnTienda == 0) { // 1- Todos los productos estan en tienda i productosEnWeb
             opcionCompraProductos = 1;
-        } else if (CART.productosEnTienda > 0 && CART.productosEnTienda < CART.length) { // 2- Existe algun producto en tienda
+        } else if (CART.productosEnTienda > 0 && CART.productosEnTienda < CART.length) { // 2- Existe algun producto en tienda y otro online
             opcionCompraProductos = 2;
         } else if (CART.productosEnTienda == 0) { // 3- Ningun producto en tienda
             opcionCompraProductos = 3;
@@ -449,7 +446,7 @@ function updateOpcionCompraProducto() { // dev 29-03-2016
 
     }
 
-    //console.log('-> Ahora vale: ' + opcionCompraProductos);
+    console.log('opcionCompraProductos -> Ahora vale: ' + opcionCompraProductos);
 }
 
 /**
@@ -782,5 +779,110 @@ function añadirProductosArray(data) {
         PRODUCTS = PRODUCTS.concat(data);
         encotrado == false;
     }
+
+}
+
+function anadirMasProd(prod, cant) {
+
+    console.log("Entramos en la funcion de añadir prod online");
+    console.log(prod);
+
+    if (CART.online.length == 0) {
+
+        prod.quantity = 1;
+        //CART.online.push(prod);
+
+    } else {
+
+        var foundCart = 0;
+
+        for (var i = 0; i < CART.online.length; i++) {
+
+            if (CART.online[i].id == prod.id) {
+
+                foundCart = 1;
+                CART.online[i].quantity = parseInt(CART.online[i].quantity) + 1;
+
+                $("#quantity" + CART.online[i].id).text(CART.online[i].quantity);
+                break;
+
+            }
+
+        }
+
+        if (foundCart == 0) {
+            prod.quantity = 1;
+            CART.online.push(prod);
+        }
+
+    }
+
+    $('#popupAlert').popup('close');
+
+}
+
+/**
+ * Recalculamos todo los articulos para saber cuales estan
+ * online y cuales no. También el precio.
+ */
+function calcularTotalStoreOnline() {
+
+    //reiniciamos todo para volver a calcularlo
+    //precios
+    CART.precioTotalProductosTienda = 0;
+    CART.precioTotalProductosWeb = 0;
+    CART.precioTotalProductosSoloTienda = 0;
+    CART.precioTotalProductosSoloWeb = 0;
+    //cantidades de productos
+    CART.productosEnTienda = 0;
+    CART.productosEnWeb = 0;
+    CART.productosSoloEnTienda = 0;
+    CART.productosSoloEnWeb = 0;
+
+    for (var i = 0; i < CART.length; i++) {
+
+        if (CART[i].stock_x_store > 0 && CART[i].stock_x_central_store > 0) {
+
+            CART.productosEnTienda = CART.productosEnTienda + 1;
+            CART.productosEnWeb = CART.productosEnWeb + 1;
+
+            var sumarPrecio = parseFloat(CART[i].store_quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
+
+            CART.precioTotalProductosTienda = parseFloat(CART.precioTotalProductosTienda) + parseFloat(sumarPrecio);
+            CART.precioTotalProductosWeb = parseFloat(CART.precioTotalProductosWeb) + parseFloat(sumarPrecio);
+
+            if (CART[i].online_quantity > 0) {
+                console.log("Excede del stock en tienda -> añadimos tambien en online");
+                CART.productosSoloEnWeb = CART.productosSoloEnWeb + 1;
+                var sumarPrecio = parseFloat(CART[i].online_quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
+                CART.precioTotalProductosSoloWeb = parseFloat(CART.precioTotalProductosSoloWeb) + parseFloat(sumarPrecio);
+            }
+
+        } else if (CART[i].stock_x_store == 0 && CART[i].stock_x_central_store > 0) {
+
+            CART.productosSoloEnWeb = CART.productosSoloEnWeb + 1;
+
+            var sumarPrecio = parseFloat(CART[i].quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
+            CART.precioTotalProductosSoloWeb = parseFloat(CART.precioTotalProductosSoloWeb) + parseFloat(sumarPrecio);
+
+        } else if (CART[i].stock_x_store > 0 && CART[i].stock_x_central_store == 0) {
+
+            CART.productosSoloEnTienda = CART.productosSoloEnTienda + 1;
+
+            var sumarPrecio = parseFloat(CART[i].quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
+            CART.precioTotalProductosSoloTienda = parseFloat(CART.precioTotalProductosSoloTienda) + parseFloat(sumarPrecio);
+
+        }
+
+    }
+
+    console.log("Precio prod tienda " + CART.precioTotalProductosTienda);
+    console.log("Precio prod web " + CART.precioTotalProductosWeb);
+    console.log("Precio prod solo tienda " + CART.precioTotalProductosSoloTienda);
+    console.log("Precio prod solo web " + CART.precioTotalProductosSoloWeb);
+    console.log("Total prod tienda " + CART.productosEnTienda);
+    console.log("Total prod web " + CART.productosEnWeb);
+    console.log("Total prod solo tienda " + CART.productosSoloEnTienda);
+    console.log("Total prod solo web " + CART.productosSoloEnWeb);
 
 }

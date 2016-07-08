@@ -238,7 +238,7 @@ function translateButtons(idioma) {
                 "btn_añadir_prod": "Añadir"
             },
             "pagina_pago": {
-                "envio_email": "Enviar correo",
+                "envio_email": "Enviar lista por email",
                 "envio_casa": ""
             },
             "form_sugerencias": {
@@ -356,8 +356,8 @@ function translateButtons(idioma) {
                 "envio_email": "Enviar correo",
                 "cancelar": "Cancelar pedido"
             },
-            "exclusivoWeb": "EXCLUSIVE WEB!",
-            "soloEnWeb": "ONLY WEB",
+            "exclusivoWeb": "EXCLUSIVO WEB!",
+            "soloEnWeb": "SOLO WEB",
             "btn_finalizar_pedido": "Finalizar pedido",
             "btn_paypal": "PAGAR POR PAYPAL",
             "pago_caja": "PAGO EN CAJA"
@@ -440,7 +440,7 @@ function translateButtons(idioma) {
                 "btn_añadir_prod": "Afegir"
             },
             "pagina_pago": {
-                "envio_email": "Enviar correu",
+                "envio_email": "Enviar lista per correu",
                 "envio_casa": ""
             },
             "form_sugerencias": {
@@ -785,7 +785,7 @@ function translateButtons(idioma) {
                 "cancelar": "Cancelar pedido"
             },
             "exclusivoWeb": "EXCLUSIVE WEB!",
-            "soloEnWeb": "ONLY WEB",
+            "soloEnWeb": "Només WEB",
             "btn_finalizar_pedido": "Finalizar pedido",
             "btn_paypal": "PAGAR POR PAYPAL",
             "pago_caja": "PAGO EN CAJA"

@@ -11,10 +11,10 @@
     <script src="lib/jquery.mobile-1.4.5.min.js"></script>
     <script src="lib/jquery.validate.min.js"></script>
     <script src="js/swiper.min.js"></script>
-    
+
     <script src='lib/jAlert-v4.min.js'></script>
-	<script src='lib/jAlert-functions.js'></script>
-    
+    <script src='lib/jAlert-functions.js'></script>
+
     <link rel="stylesheet" href="lib/jAlert-v4.css">
 
     <link rel="stylesheet" href="lib/jquery.mobile-1.4.5.min.css" />
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="lib/all-animation.min.css" />
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/estilos.css" />
-    
+
     <!-- SCRIPTS NUESTROS -->
     <script src="js/app.js"></script>
     <script src="js/config.js"></script>
@@ -258,7 +258,7 @@
         </div>
 
         <!--     CONTENT    -->
-        <div data-role="content" id="content_page" data-tap-toggle="false" style="padding-top: 0px;padding-right: 8px;padding-left: 8px;padding-bottom: 0px;margin-top: -2%;">
+        <div data-role="content" id="content_page" data-tap-toggle="false" style="padding-right: 8px;padding-left: 8px;padding-bottom: 0px;padding-top: 0px;"><!--margin-top: -2%;-->
             <!-- max-height:70% -->
 
             <div id="divTienda" align="center" style="padding-top: 5%;">
@@ -368,6 +368,21 @@
                     </center>
                     <button id="btnPopupActionLeft" onclick='$("#popupAction").popup("close");' data-theme="c" data-iconpos="right" style="width:13em; float:left; margin:10px">No</button>
                     <button id="btnPopupActionRight" onclick='$("#popupAction").popup("close");' data-theme="d" data-iconpos="right" style="width:13em; float:right; margin:10px">Si</button>
+
+                </div>
+            </div>
+
+            <!-- POPUP DE ARTICULOS -->
+            <div data-role="popup" data-corners="false" data-overlay-theme="a" id="popupAlertProd" class="ui-shadow ui-btn-inline" style="min-width:400px;">
+                <div class="ui-bar ui-bar-b" data-theme="b">
+                    <h3><label id="lbpopAlertTitlle" style="">Alerta</label></h3>
+                </div>
+                <div class="ui-body ui-body-b">
+                    <center>
+                        <label id="lbpopAlertText" style="">Lo sentimos, no hay más stock disponible en tienda,<br>¿desea adquirir el producto online?</label>
+                    </center>
+                    <button id="btnPopupAlertLeft" data-theme="c" onclick="$('#popupAlert').popup('close');" data-iconpos="right" style="width:13em; float:left; margin:10px">No</button>
+                    <button id="btnPopupAlertRight" data-theme="d" data-iconpos="right" style="width:13em; float:right; margin:10px">Si</button>
                 </div>
             </div>
 
