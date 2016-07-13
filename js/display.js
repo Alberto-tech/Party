@@ -226,7 +226,8 @@ function displayNode(data, originNode, originName, linkImg, aux) {
 
                     }
 
-                    var imgLinkExt = data.nodes[i].linkext.replace("wide", "bigPreview");
+                    //var imgLinkExt = data.nodes[i].linkext.replace("wide", "bigPreview");
+                    var imgLinkExt = data.nodes[i].linkext;
 
                     if (valorSwitch == 7) { //despues de la primera fila se mostrara el elemento principal que ocupa toda una fila
 
