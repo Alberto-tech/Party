@@ -1974,28 +1974,29 @@ function displayProducts(data, originNode, originName, param, param4) {
         $("#divContent").trigger('create');
 
         $("#popupCargando").popup("close");
-
+        
         //mostrar los productos añadidos al carrito al cargar
         if (CART.length > 0) {
 
             for (var l = 0; l < data.products.length; l++) {
 
-                var prod = data.products[l]; //recorremos todos los productos
+                for (var m = 0; m < data.products[l].typeproducts.length; m++) {
 
-                for (var n = 0; n < CART.length; n++) {
+                    var prod = data.products[l].typeproducts[m]; //recorremos todos los productos
 
-                    if (parseInt(CART[n].id) == parseInt(prod.id)) {
+                    for (var n = 0; n < CART.length; n++) {
 
-                        console.log("ACTUALIZAMOS LA LISTA SEGUN EL CARRITO catalogo");
-                        displayItemOperations(CART[n].id, parseInt(CART[n].quantity));
+                        if (parseInt(CART[n].id) == parseInt(prod.id)) {
+
+                            console.log("ACTUALIZAMOS LA LISTA SEGUN EL CARRITO");
+                            displayItemOperations(CART[n].id, parseInt(CART[n].quantity));
+
+                        }
 
                     }
-
                 }
             }
         }
-
-
 
     } else {
 
@@ -2003,16 +2004,10 @@ function displayProducts(data, originNode, originName, param, param4) {
 
     }
 
-
     translateButtons(idiomStore);
 
-
-
-
-
-
-
 }
+
 
 function añadirMasProductos(data, originNode, originName, param) {
 
@@ -3258,7 +3253,7 @@ function loadMenu(data) {
 
     $('#btn_finalizarpedido').click(function () { // develop 1
 
-        console.log('Handler for .click() called. con ' + opcionCompraProductos + ' ' + CART.productosEnTienda + ' ' + CART.productosEnWeb);
+        console.log('Handler for .click() called. con opcionCompraProductos ' + opcionCompraProductos + ' productosEnTienda ' + CART.productosEnTienda + ' productosEnWeb ' + CART.productosEnWeb);
         opcionesPago();
 
     });

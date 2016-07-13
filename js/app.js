@@ -688,6 +688,7 @@ function carrito(id_producto, operacion, precio) {
 
 }
 
+
 /********************************************************************************************************************
   Esta funcion sirve para añadir o restar articulos al carrito del cliente y hacer los cambios en la interfaz grafica
   Parametros : 
@@ -735,6 +736,8 @@ function addToCart(item, param, aux) {
                         //updateVariblesTiposDeProducto(product, (param > 0 ? true : false), foundInCart); //actulizamos variables del carrito para el pago.
                         
                         calcularTotalStoreOnline();
+                        
+                        updateOpcionCompraProducto();
 
                         if (CART[j].quantity == 0) // TEMP !!
                             deleteItemCart(j);
@@ -779,6 +782,8 @@ function addToCart(item, param, aux) {
                             //updateVariblesTiposDeProducto(product, (param > 0 ? true : false), foundInCart); //actulizamos variables del carrito para el pago.
                             
                             calcularTotalStoreOnline();
+                            
+                            updateOpcionCompraProducto();
 
                             if (CART[j].quantity == 0) // TEMP !!
                                 deleteItemCart(j);
@@ -819,6 +824,8 @@ function addToCart(item, param, aux) {
                                     displayItemOperations(CART[j].id, CART[j].quantity);
                                     
                                     calcularTotalStoreOnline();
+                                    
+                                    updateOpcionCompraProducto();
 
                                     $('#popupAlertProd').popup('close');
 
@@ -863,6 +870,8 @@ function addToCart(item, param, aux) {
                                     displayItemOperations(CART[j].id, CART[j].quantity);
                                     
                                     calcularTotalStoreOnline();
+                                    
+                                    updateOpcionCompraProducto();
 
                                     console.log("Hemos clicado en si, la cantidad es " + CART[j].quantity);
 
@@ -1104,14 +1113,6 @@ function addToCartAlter(id_prod_alter, id_produc) {
     }
 
     updateOpcionCompraProducto();
-
-    /*if (CART.length - productosEnTienda == 0) { // 1- Todos los productos estan en tienda
-        opcionCompraProductos = 1;
-    } else if (productosEnTienda > 0 && productosEnTienda < CART.length) { // 2- Existe algun producto en tienda
-        opcionCompraProductos = 2;
-    } else if (productosEnTienda == 0) { // 3- Ningun producto en tienda
-        opcionCompraProductos = 3;
-    }*/
 
     refreshDisplayProducts(TEMP_PRODUCTS, product, id_produc);
 

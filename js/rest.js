@@ -244,7 +244,7 @@ function getFlags() {
     */
 function getNodes(idNode, nodeName, isAlgo, aux, backPage) {
 
-    console.log('-> getNodes | pantalla actual: ' + pantallaActual + ' AUX: ' + AUX + ' CANRT length ' + CART.length);
+    console.log('-> getNodes ' + idNode + '| pantalla actual: ' + pantallaActual + ' AUX: ' + AUX + ' CANRT length ' + CART.length);
 
     ID_NODE = idNode;
 
