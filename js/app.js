@@ -44,6 +44,8 @@ $(document).ready(function () {
         $('#principal').show();
         $('#contentPopupScreenSaver').hide();
 
+        clearInterval(protector);
+
         protector = setInterval(function () {
             logout();
             displayScreenSaver();
@@ -55,6 +57,19 @@ $(document).ready(function () {
             //getNodesProducts(nodeIds[nodeIds.length - 1], nodeNames[nodeNames.length - 1]);
 
         }
+
+    });
+
+    $(document).on("scrollstart", function () {
+        
+        //console.log("Limpiamos el salva con el scroll");
+        clearInterval(protector);
+
+        protector = setInterval(function () {
+            logout();
+            displayScreenSaver();
+        }, idleTime);
+        
     });
 
 
@@ -303,7 +318,7 @@ $(document).ready(function () {
         var contraseña = $('#passwordsignup').val();
         var rep_contraseña = $('#passwordsignup_confirm').val();
         var cod_pos = $('#cod_pos').val();
-        //console.log("Contra " + contraseña + " dos " + rep_contraseña + " mas " + cod_pos);
+        console.log("Contra " + contraseña + " dos " + rep_contraseña + " mas " + cod_pos);
 
         if (contraseña != rep_contraseña) { //usuario == "" || contraseña == "" || rep_contraseña == "" || cod_pos == ""
 
@@ -330,8 +345,22 @@ $(document).ready(function () {
             $('#cod_pos').removeClass('colorText');
             getRegistro(usuario, contraseña, cod_pos);
 
+        } else if (contraseña.length <= 8 && rep_contraseña.length <= 8) {
+
+            console.log("AQUI222");
+            $('#passwordsignup').val("");
+            $('#passwordsignup_confirm').val("");
+            $("#passwordsignup").attr("placeholder", jsonIdiomas.popup_errores.campo_vacio_oass);
+            $('#passwordsignup').addClass('colorText');
+            $("#passwordsignup_confirm").attr("placeholder", jsonIdiomas.popup_errores.campo_vacio_oass);
+            $('#passwordsignup_confirm').addClass('colorText');
+
         } else {
             //console.log("AQUI");
+            $('#passwordsignup').val("");
+            $('#passwordsignup_confirm').val("");
+            $('#emailsignup').val("");
+            $('#cod_pos').val("");
             $("#emailsignup").attr("placeholder", jsonIdiomas.popup_errores.campo_vacio);
             $('#emailsignup').addClass('colorText');
             $("#passwordsignup").attr("placeholder", jsonIdiomas.popup_errores.campo_vacio);
@@ -734,9 +763,9 @@ function addToCart(item, param, aux) {
                         displayItemOperations(CART[j].id, parseInt(CART[j].quantity), j);
 
                         //updateVariblesTiposDeProducto(product, (param > 0 ? true : false), foundInCart); //actulizamos variables del carrito para el pago.
-                        
+
                         calcularTotalStoreOnline();
-                        
+
                         updateOpcionCompraProducto();
 
                         if (CART[j].quantity == 0) // TEMP !!
@@ -780,9 +809,9 @@ function addToCart(item, param, aux) {
                             displayItemOperations(CART[j].id, parseInt(CART[j].quantity), j);
 
                             //updateVariblesTiposDeProducto(product, (param > 0 ? true : false), foundInCart); //actulizamos variables del carrito para el pago.
-                            
+
                             calcularTotalStoreOnline();
-                            
+
                             updateOpcionCompraProducto();
 
                             if (CART[j].quantity == 0) // TEMP !!
@@ -822,9 +851,9 @@ function addToCart(item, param, aux) {
                                     $("#labelPrecioTotalProducto" + CART[j].id).text(jsonIdiomas.cajas.precio_total_label + formatoNumero(precioArticulo, 2, ",", ".", "€"));
 
                                     displayItemOperations(CART[j].id, CART[j].quantity);
-                                    
+
                                     calcularTotalStoreOnline();
-                                    
+
                                     updateOpcionCompraProducto();
 
                                     $('#popupAlertProd').popup('close');
@@ -836,7 +865,7 @@ function addToCart(item, param, aux) {
                                     }
 
                                 });
-                                
+
                                 $("#btnPopupAlertLeft").off("click").on('click', function () { //desactivamos y activamos para no duplicar eventos
 
                                     console.log("Hemos clicado en no");
@@ -868,9 +897,9 @@ function addToCart(item, param, aux) {
                                     $("#labelPrecioTotalProducto" + CART[j].id).text(jsonIdiomas.cajas.precio_total_label + formatoNumero(precioArticulo, 2, ",", ".", "€"));
 
                                     displayItemOperations(CART[j].id, CART[j].quantity);
-                                    
+
                                     calcularTotalStoreOnline();
-                                    
+
                                     updateOpcionCompraProducto();
 
                                     console.log("Hemos clicado en si, la cantidad es " + CART[j].quantity);
@@ -957,19 +986,19 @@ function addToCart(item, param, aux) {
         product.original = true; //este campo indica si el articulo ha sido sustituido o no
 
         product.store_quantity = product.quantity;
-                   
-        if(product.stock_x_store > 0 && product.stock_x_central_store > 0){
-            product.store_quantity = product.quantity;            
+
+        if (product.stock_x_store > 0 && product.stock_x_central_store > 0) {
+            product.store_quantity = product.quantity;
         }
-        
+
         /*if(product.stock_x_store == 0 && product.stock_x_central_store > 0){
             product.online_quantity = param;
         }*/
-        
+
         CART.push(product);
 
         //updateVariblesTiposDeProducto(product, (param > 0 ? true : false)); // TEMP !! actulizamos variables.
-        
+
         calcularTotalStoreOnline();
 
         displayItemOperations(item, product.quantity);

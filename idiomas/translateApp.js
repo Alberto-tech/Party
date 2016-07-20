@@ -90,6 +90,7 @@ function translateButtons(idioma) {
             "proceso_pago": {
                 "tl_pregunta": "¿QUE QUIERE HACER CON SU PEDIDO?",
                 "tl_pregunta_2": "¿QUE QUIERE HACER?",
+                "tl_cero": "LOS ARTICULOS ESTAN DISPONIBLES SOLO EN TIENDA",
                 "tl_uno": "TODOS LOS ARTICULOS ESTAN DISPONIBLES",
                 "tl_dos": "TANTO EN TIENDA COMO ONLINE",
                 "tl_tres": "TIENE",
@@ -271,6 +272,7 @@ function translateButtons(idioma) {
                 "tituloPopUpDisponiblesWeb": "Productos disponibles en web",
                 "tituloBoton": "Vaciar carro",
                 "campo_vacio": "Rellene este campo",
+                "campo_vacio_oass": "Rellene este campo.Minimo 8 carácteres.",
                 "displayProductos": {
                     "isfiesta_3": "Todos los selects ok",
                     "else": "Seleccione un campo valido para poder continuar"
@@ -294,6 +296,7 @@ function translateButtons(idioma) {
             "proceso_pago": {
                 "tl_pregunta": "¿QUE QUIERE HACER CON SU PEDIDO?",
                 "tl_pregunta_2": "¿QUE QUIERE HACER?",
+                "tl_cero": "LOS ARTICULOS SOLO ESTAN DISPONIBLES EN TIENDA",
                 "tl_uno": "TODOS LOS ARTICULOS ESTAN DISPONIBLES",
                 "tl_dos": "TANTO EN TIENDA COMO ONLINE",
                 "tl_tres": "TIENE",
@@ -487,6 +490,7 @@ function translateButtons(idioma) {
                 "tituloPopUpDisponiblesWeb": "Productes disponibles a la web",
                 "tituloBoton": "Buidar carro",
                 "campo_vacio": "Ompli aquest camp",
+                "campo_vacio_oass": "Ompli aquest camp.Minim 8 caracters.",
                 "displayProductos": {
                     "isfiesta_3": "Tots els selects ok",
                     "else": "Seleccioni un camp valid per poder continuar"
@@ -510,6 +514,7 @@ function translateButtons(idioma) {
             "proceso_pago": {
                 "tl_pregunta": "QUE VOL FER AMB LA SEVA COMANDA?",
                 "tl_pregunta_2": "QUE VOL FER?",
+                "tl_cero": "ELS ARTICLES NOMES ESTAN DISPONIBLES A LA BOTIGA",
                 "tl_uno": "TOTS ELS ARTICLES ESTAN DISPONIBLES",
                 "tl_dos": "TANT EN BOTIGA COM EN WEB",
                 "tl_tres": "TÉ ",

@@ -1575,7 +1575,7 @@ function displayProducts(data, originNode, originName, param, param4) {
                 } else if (parseInt(stock) == 0) {
                     imgStock = "css/maqueta/barraRojo.png";
                 }
-
+               
 
                 //if (data.products[i].stock_x_store == 0) {
                 if (data.products[i].price_x_region[0].exclusiveWeb == 1 || data.products[i].stock_x_store == 0) {
@@ -1975,7 +1975,7 @@ function displayProducts(data, originNode, originName, param, param4) {
         $("#divContent").trigger('create');
 
         $("#popupCargando").popup("close");
-        
+
         //mostrar los productos añadidos al carrito al cargar
         if (CART.length > 0) {
 
@@ -2841,7 +2841,7 @@ function displayPopupItemDetail(id, param, idproduct) {
                         '<div class="ui-block-a"><img src="' + imgLinkExt + '" style="max-width: 325px;width: 100%;"></div>' +
                         '<div class="ui-block-b">' +
                         '<br><label style="font-size: 20px;margin-top:5px;"><h1>Precio: ' + parseFloat(PRODUCTS[i].price_x_region[0].totalPrice).toFixed(2) + ' €</h1></label>' +
-                        '<p><strong><p style="font-size: 15px;margin-top:5px;"> Ubicación: ' + (PRODUCTS[i].position_x_store.section == "undefined" ? '' : PRODUCTS[i].position_x_store.section) + ' ' + (PRODUCTS[i].position_x_store.module == undefined ? '' : PRODUCTS[i].position_x_store.module) + ' ' + (PRODUCTS[i].position_x_store.position == undefined ? '' : PRODUCTS[i].position_x_store.position) + ' </strong></p>' +
+                        '<p><strong><p style="font-size: 15px;margin-top:5px;"> Ubicación: ' + (PRODUCTS[i].position_x_store.section == undefined ? '' : PRODUCTS[i].position_x_store.section) + ' ' + (PRODUCTS[i].position_x_store.module == undefined ? '' : PRODUCTS[i].position_x_store.module) + ' ' + (PRODUCTS[i].position_x_store.position == undefined ? '' : PRODUCTS[i].position_x_store.position) + ' </strong></p>' +
                         '<p><strong style="font-size: 15px;vertical-align:sub;margin-top:5px;"> Descripción: </strong></p>' +
                         '<strong style="font-size: 15px;vertical-align:sub;margin-top:5px;"><p style="white-space: initial;font-size: 15px;">' + definition + '</p></strong>' +
                         '<p class="ui-li-aside"><img src="' + imgAvailability + '" style="width:50px;"></p>' +
@@ -2936,7 +2936,7 @@ function displayPopupItemDetail(id, param, idproduct) {
 
                     var ubicacion = PRODUCTS[i].position_x_store.section + ' ' + PRODUCTS[i].position_x_store.module + ' ' + PRODUCTS[i].position_x_store.position;
 
-                    if (PRODUCTS[i].position_x_store.section == undefined) {
+                    if (PRODUCTS[i].position_x_store.section == undefined){
                         ubicacion = "";
                     }
 
@@ -4029,13 +4029,14 @@ function opcionesPago() { //TEMP
 
     switch (opcionCompraProductos) {
     case 1:
+
         OPCIONENVIO = 1;
         var html = '<div>' +
             '<center>' +
-            '<h2 style="margin: 1% 0 1% 0;color:#0197d4">' + jsonIdiomas.proceso_pago.tl_uno + '<br>' + jsonIdiomas.proceso_pago.tl_dos + '</h2>' +
+            '<h2 style="margin: 1% 0 1% 0;color:#0197d4">' + jsonIdiomas.proceso_pago.tl_cero + '</h2>' + //'<br>' + jsonIdiomas.proceso_pago.tl_dos 
             '<h4 style="margin: 0 0 1% 0;color:#0197d4">' + jsonIdiomas.proceso_pago.tl_pregunta + '</h4>' +
             '<div style="width: 50%;margin: 0% 0% 1% 0%;" onclick="pagarEnCaja();">' +
-            '<div style="background-color: #0197d4;color: white;text-align: left;width: 100%;height: 45px;line-height: 45px;" class="ui-grid-a"><div class="ui-block-a" style="width: 10%;height: 45px;"><img src="http://partyfiesta.youtter.com/app/alb/img/tienda.png" style="width: 45px;"></div><div class="ui-block-b" style="width: 90%;height: 45px;text-align: left;"><label>' + jsonIdiomas.proceso_pago.tl_seis + '</label></div></div>' +
+            '<div style="background-color: #0197d4;color: white;text-align: left;width: 100%;height: 45px;line-height: 45px;" class="ui-grid-a"><div class="ui-block-a" style="width: 10%;height: 45px;"><img src="http://partyfiesta.youtter.com/app/alb/img/tienda.png" style="width: 45px;"></div><div class="ui-block-b" style="width: 90%;height: 45px;text-align: left;"><label>' + jsonIdiomas.proceso_pago.tl_ocho + '</label></div></div>' +
             '<div style="background-color: #d8d8d8;color: black;text-align: right;width: 100%;height: 40px;line-height: 40px;border-bottom: 2px solid #ccc;" class="ui-grid-solo"><div class="ui-block-a" style="padding-right: 20px;"><label>Total cesta: <strong font-size: 20px;>' + formatoNumero(CART.ammount, 2, ",", ".", "€") + '</strong></label></div></div>' +
             '<div style="background-color: #d8d8d8;color: black;text-align: right;width: 100%;height: 40px;line-height: 40px;" class="ui-grid-solo"><div class="ui-block-a" style="padding-right: 20px;"><label style="font-style: italic;">' + CART.length + ' producto disponibles</label></div></div>' +
             '</div>' +
@@ -4052,15 +4053,25 @@ function opcionesPago() { //TEMP
         break;
     case 2:
         OPCIONENVIO = 2;
+
+        var prodTienda = CART.productosEnTienda + CART.productosSoloEnTienda;
+        var prodWeb = CART.productosEnWeb + CART.productosSoloEnWeb;
+
+        var precioTienda = CART.precioTotalProductosTienda + CART.precioTotalProductosSoloTienda;
+        var precioWeb = CART.precioTotalProductosWeb + CART.precioTotalProductosSoloWeb;
+
+        console.log("Prod tienda " + prodTienda + " Prod web " + prodWeb + " precio tienda " + precioTienda + " precio web " + precioWeb);
+
         var html = '<div>' +
             '<center>' +
-            '<h2 style="margin: 1% 0 1% 0;color:#0197d4">' + jsonIdiomas.proceso_pago.tl_tres + ' ' + CART.productosEnTienda + ' ' + jsonIdiomas.proceso_pago.tl_quatro + '<br>' + jsonIdiomas.proceso_pago.tl_tres + ' ' + CART.productosEnWeb + ' ' + jsonIdiomas.proceso_pago.tl_cinco + '</h2>' +
+            '<h2 style="margin: 1% 0 1% 0;color:#0197d4">' + jsonIdiomas.proceso_pago.tl_tres + ' ' + prodTienda + ' ' + jsonIdiomas.proceso_pago.tl_quatro + '<br>' + jsonIdiomas.proceso_pago.tl_tres + ' ' + prodWeb + ' ' + jsonIdiomas.proceso_pago.tl_cinco + '</h2>' +
             '<h4 style="margin: 0 0 1% 0;color:#0197d4">' + jsonIdiomas.proceso_pago.tl_pregunta + '</h4>' +
             '<div style="width: 50%;margin: 0% 0% 1% 0%;" onclick="pagarEnCaja();OPCIONPEDIDO=1;">' +
             '<div style="background-color: #0197d4;color: white;text-align: left;width: 100%;height: 45px;line-height: 45px;" class="ui-grid-a"><div class="ui-block-a" style="width: 10%;height: 45px;"><img src="http://partyfiesta.youtter.com/app/alb/img/tienda.png" style="width: 45px;"></div><div class="ui-block-b" style="width: 90%;height: 45px;text-align: left;"><label>' + jsonIdiomas.proceso_pago.tl_ocho + '</label></div></div>' +
-            '<div style="background-color: #d8d8d8;color: black;text-align: right;width: 100%;height: 40px;line-height: 40px;border-bottom: 2px solid #ccc;" class="ui-grid-solo"><div class="ui-block-a" style="padding-right: 20px;"><label>Total cesta(solo tiene en cuenta los articulos en tienda): <strong font-size: 20px;>' + formatoNumero(CART.precioTotalProductosTienda, 2, ",", ".", "€") + '</strong></label></div></div>' +
-            '<div style="background-color: #d8d8d8;color: black;text-align: right;width: 100%;height: 40px;line-height: 40px;" class="ui-grid-solo"><div class="ui-block-a" style="padding-right: 20px;"><label style="font-style: italic;">' + CART.productosEnTienda + ' producto disponibles</label></div></div>' +
+            '<div style="background-color: #d8d8d8;color: black;text-align: right;width: 100%;height: 40px;line-height: 40px;border-bottom: 2px solid #ccc;" class="ui-grid-solo"><div class="ui-block-a" style="padding-right: 20px;"><label>Total cesta(solo tiene en cuenta los articulos en tienda): <strong font-size: 20px;>' + formatoNumero(precioTienda, 2, ",", ".", "€") + '</strong></label></div></div>' +
+            '<div style="background-color: #d8d8d8;color: black;text-align: right;width: 100%;height: 40px;line-height: 40px;" class="ui-grid-solo"><div class="ui-block-a" style="padding-right: 20px;"><label style="font-style: italic;">' + prodTienda + ' producto disponibles</label></div></div>' +
             '</div>' +
+            //si hay prod en solo tienda no podremos compra online
             (parseInt(CART.productosSoloEnTienda) > 0 ? '' :
                 '<div style="width: 50%;margin: 0% 0% 1% 0%;" onclick="getSendPrice(' + CART.ammount + ');OPCIONPEDIDO=2;">' +
                 '<div style="background-color: #0197d4;color: white;text-align: left;width: 100%;height: 45px;line-height: 45px;" class="ui-grid-a"><div class="ui-block-a" style="width: 10%;height: 45px;"><img src="http://partyfiesta.youtter.com/app/alb/img/camion.png" style="width: 45px;"></div><div class="ui-block-b" style="width: 90%;height: 45px;text-align: left;"><label>' + jsonIdiomas.proceso_pago.tl_nueve + '</label></div></div>' +
@@ -4356,9 +4367,10 @@ function sistemasPago(soloOnline) { //TEMP
 
     $("#caja").click(function () {
 
+        $("#popupCargando").popup("open");
         sendBasketAndOrder('cash register');
 
-        html = '<center>' +
+        /*html = '<center>' +
             '<div style="margin-top:10%;width: 50%;" onclick="getNodes(0);">' +
             '<div class="ui-grid-solo" style="color:#0197d4;">' +
             '<label style="font-size:x-large;">' + jsonIdiomas.pago_caja + '</label>' +
@@ -4375,7 +4387,7 @@ function sistemasPago(soloOnline) { //TEMP
 
         setTimeout(function () {
             getNodes(0);
-        }, 10000);
+        }, 10000);*/
 
     });
 
@@ -5557,7 +5569,7 @@ function pantallaRegistroPago() {
         '<div class="ui-grid-a" style="' + displayNoneReg + '">' +
         '<div class="ui-block-a">' +
         '<label class="youpasswd" data-icon="p" style="color:#0197d4;">' + jsonIdiomas.reg_pant_pedido.codPos + ' *</label>' +
-        '<div class="" style="width:80%;"><input required style="width: 100%;border:1px solid #0197d4" data-corners="false" id="in_postal" name="in_postal" data-type="facturacion" required="required" type="text" placeholder=""></div>' +
+        '<div class="" style="width:80%;"><input required style="width: 100%;border:1px solid #0197d4" data-corners="false" id="in_postal_2" name="in_postal" data-type="facturacion" required="required" type="text" placeholder=""></div>' +
         '</div>' +
         '</div>' +
         //direccion de envio
@@ -5663,6 +5675,8 @@ function pantallaRegistroPago() {
             var ciudad = $('#in_ciudad').val();
             var selectCountry = $('#selectCountry').val();
             var selectProvince_2 = $('#selectProvince_2').val();
+            
+            console.log("");
 
             if (email == email_re && pass == pass_re && name != "" && apellidos != "" && tel != "" && dni != "" && direc != "" && num_direc != "" && postal != "" && ciudad != "") { //codpos != "" &&
 

@@ -17,6 +17,8 @@ function getLogin(usario, contraseña) {
         type: 'POST',
         timeout: 10000, //10 seg
         success: function (response) {
+            
+            console.log(response);
 
             if (response.result == 1) {
 
@@ -61,7 +63,7 @@ function getLogin(usario, contraseña) {
 
                 $.jAlert({
                     'title': 'Alerta',
-                    'content': jsonIdiomas.alertas.form_imcompleto,
+                    'content': jsonIdiomas.alertas.error_login,
                     'theme': 'gray',
                     'size': 'xsm'
                 });
@@ -1955,9 +1957,11 @@ function guardarCarrito() {
                 console.log("Carrito guardado correctamente");
                 ID_BASKET = response.idBasket;
             } else if (parseInt(response.result) == parseInt(0)) {
-                //guardarCarrito();
+                console.log("Problemas con la cesta");
+                console.log(response);
             } else {
-                //guardarCarrito();
+                console.log("Problemas con la cesta");
+                console.log(response);
             }
 
         },
@@ -2021,7 +2025,7 @@ function sendOrder() {
         internalShippingCost: INFO_USU.name,
         userId: INFO_USU.id,
         shopId: STORE.id,
-        idBasket: ID_BASKET,
+        //idBasket: ID_BASKET,
         lang: language
     };
 
@@ -2039,9 +2043,9 @@ function sendOrder() {
                 console.log("Order guardado correctamente");
                 ID_ORDER = response.idOrder;
             } else if (parseInt(response.result) == parseInt(0)) {
-                //guardarCarrito();
+               console.log("Problemas con la cesta");
             } else {
-                //guardarCarrito();
+                console.log("Problemas con la cesta");
             }
 
         },
@@ -2090,9 +2094,9 @@ function updateOrder() {
             if (parseInt(response.result) == parseInt(1)) {
                 console.log("Carrito guardado correctamente");
             } else if (parseInt(response.result) == parseInt(0)) {
-                //guardarCarrito();
+                console.log("Problemas con la cesta");
             } else {
-                //guardarCarrito();
+                console.log("Problemas con la cesta");
             }
 
         },
@@ -2392,10 +2396,10 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
 
     console.log("Info usu " + INFO_USU);
 
-
     var prodAux = [];
 
-    if (OPCIONPEDIDO == 3) { //recoge los articulos de tienda y paga el online solo enviamos los articulos online
+    if ((OPCIONPEDIDO == 3 && OPCIONENTREGA == 'shop') || (OPCIONPEDIDO == 2 && OPCIONENTREGA == 'shop')) { //recoge los articulos de tienda y paga el online solo enviamos los articulos online
+        
         var aux = 0;
         for (var i = 0; i < CART.length; i++) {
 
@@ -2414,22 +2418,27 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
 
             }
         }
+        
     } else {
+        
         prodAux = CART;
+        
     }
 
     for (var i = 0; i < prodAux.length; i++) {
+        
         console.log("Prod a enviar");
         console.log(prodAux[i]);
         basePriceCount += parseFloat(prodAux[i].price_x_region[0].basePrice) * prodAux[i].quantity;
         taxPriceCount += parseFloat(prodAux[i].price_x_region[0].taxPrice) * prodAux[i].quantity;
         totalPriceCount += parseFloat(prodAux[i].price_x_region[0].totalPrice) * prodAux[i].quantity;
+        
     }
 
     console.log("Productos a enviar es:");
     console.log(prodAux);
 
-    if (OPCIONENVIO == 2) {
+    if (OPCIONENVIO == 2 && OPCIONENTREGA == "shop") {
 
         var deliveryAddress = STORE.address;
         var deliveryPostalCode = STORE.postalCode;
@@ -2501,14 +2510,14 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
 
         userId: INFO_USU.id,
         shopId: STORE.id,
-        idBasket: ID_BASKET,
+        //idBasket: ID_BASKET,
         lang: language
+
     };
 
     console.log("Mis datos son");
     console.log(dataSend);
-
-
+    
     var request = $.ajax({
         data: dataSend,
         url: urlServices + 'sendBasketAndOrder.php',
@@ -2521,14 +2530,40 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
             console.log(response);
 
             if (response.result == -1) {
+                
+                $("#popupCargando").popup("close");
                 console.log("Faltan parametros");
+                
             } else {
-                CART = [];
-                nodeNames = [];
-                nodeIds = [];
-                nodeImg = [];
-                EMAIL_USER = "";
-                logout();
+                
+                $("#popupCargando").popup("close");
+
+                html = '<center>' +
+                    '<div style="margin-top:10%;width: 50%;" onclick="getNodes(0);">' +
+                    '<div class="ui-grid-solo" style="color:#0197d4;">' +
+                    '<label style="font-size:x-large;">' + jsonIdiomas.pago_caja + '</label>' +
+                    '</div>' +
+                    '<div class="ui-grid-b" style="height:58px;background-color:#0197d4;">' +
+                    '<div class="ui-block-a" style="width:10%;padding-top: 6px;"><img src="img/check.png" style="width:45px"></div>' +
+                    '<div class="ui-block-b" style="width:90%;"><label style="color:white;line-height: normal;font-size: x-large;">' + jsonIdiomas.proceso_pago.tl_diezyseis + '</label></div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</center>';
+
+                $("#divContent").html(html);
+                $("#divContent").trigger('create');
+
+                setTimeout(function () {
+                    getNodes(0);
+                    CART = [];
+                    nodeNames = [];
+                    nodeIds = [];
+                    nodeImg = [];
+                    EMAIL_USER = "";
+                    logout();
+                }, 10000);
+
+
             }
 
         },
@@ -2540,9 +2575,9 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
                 alert("Error de TimeOut... compruebe su conexion de internet");
 
             } else {
+                
+                console.log(response);
 
-                //restError(jqXHR, "tiendas");
-                //console.log("Sin conexion");
                 $("#texto_popup").text("Error de ws");
                 $('#popupAlert').popup('open');
 
