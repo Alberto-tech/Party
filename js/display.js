@@ -4217,7 +4217,7 @@ function opcionesEnvio(casoEnvio, totalCesta) { //TEMP
 }
 
 
-function sistemasPago(soloOnline) { //TEMP
+function sistemasPago(soloOnline) { 
 
     console.log('--> sistemasPago ' + soloOnline);
 

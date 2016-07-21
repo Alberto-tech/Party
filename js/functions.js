@@ -433,26 +433,28 @@ function updateOpcionCompraProducto() { // dev 29-03-2016
     //console.log('-> Recalculamos opcionCompraProductos, antes valia: ' + opcionCompraProductos);
 
     //if (CART.length == 0) {
-       // opcionCompraProductos = 1;
+    // opcionCompraProductos = 1;
     //} else {
 
-        /*if (CART.length - CART.productosEnTienda == 0 || CART.length - CART.productosSoloEnTienda == 0 && CART.productosSoloEnWeb == 0 ) { // 1- Todos los productos estan en tienda i productosEnWeb
-            opcionCompraProductos = 1;
-        } else if (CART.productosEnTienda > 0 && CART.productosEnTienda < CART.length && CART.productosSoloEnWeb > 0 ) { // 2- Existe algun producto en tienda y otro online
-            opcionCompraProductos = 2;
-        } else if (CART.productosEnTienda == 0 || CART.productosSoloEnTienda == 0) { // 3- Ningun producto en tienda
-            opcionCompraProductos = 3;
-        }*/
-        
-        if ( ( CART.productosEnTienda > 0 || CART.productosSoloEnTienda > 0 ) && CART.productosEnWeb == 0  && CART.productosSoloEnWeb == 0  ) { // 1- Todos los productos estan en tienda i productosEnWeb
-            opcionCompraProductos = 1;
-        } else if ( ( CART.productosEnTienda > 0 || CART.productosSoloEnTienda > 0 ) && ( CART.productosEnWeb == 0  || CART.productosSoloEnWeb == 0 ) ) { // 2- Existe algun producto en tienda y online
-            opcionCompraProductos = 2;
-        } else if ( CART.productosEnTienda == 0 && CART.productosSoloEnTienda == 0 ) { // 3- Ningun producto en tienda
-            opcionCompraProductos = 3;
-        }
+    /*if (CART.length - CART.productosEnTienda == 0 || CART.length - CART.productosSoloEnTienda == 0 && CART.productosSoloEnWeb == 0 ) { // 1- Todos los productos estan en tienda i productosEnWeb
+        opcionCompraProductos = 1;
+    } else if (CART.productosEnTienda > 0 && CART.productosEnTienda < CART.length && CART.productosSoloEnWeb > 0 ) { // 2- Existe algun producto en tienda y otro online
+        opcionCompraProductos = 2;
+    } else if (CART.productosEnTienda == 0 || CART.productosSoloEnTienda == 0) { // 3- Ningun producto en tienda
+        opcionCompraProductos = 3;
+    }*/
 
-   // }
+
+    if ((parseInt(CART.productosEnTienda) > 0 || parseInt(CART.productosSoloEnTienda) > 0) && parseInt(CART.productosEnWeb) == 0 && parseInt(CART.productosSoloEnWeb) == 0) { // 1- Todos los productos estan en tienda i productosEnWeb
+        opcionCompraProductos = 1;
+    } else if ((parseInt(CART.productosEnTienda) > 0 || parseInt(CART.productosSoloEnTienda) > 0) && (parseInt(CART.productosEnWeb) > 0 || parseInt(CART.productosSoloEnWeb) > 0)) { // 2- Existe algun producto en tienda y online
+        opcionCompraProductos = 2;
+    } else if (parseInt(CART.productosEnTienda) == 0 && parseInt(CART.productosSoloEnTienda) == 0) { // 3- Ningun producto en tienda
+        console.log("Tienda " + CART.productosEnTienda + " WEB " + CART.productosSoloEnTienda);
+        opcionCompraProductos = 3;
+    }
+
+    // }
 
     console.log('opcionCompraProductos -> Ahora vale: ' + opcionCompraProductos);
 }
@@ -841,7 +843,7 @@ function calcularTotalStoreOnline() {
     CART.precioTotalProductosWeb = 0;
     CART.precioTotalProductosSoloTienda = 0;
     CART.precioTotalProductosSoloWeb = 0;
-    
+
     //cantidades de productos
     CART.productosEnTienda = 0;
     CART.productosEnWeb = 0;
