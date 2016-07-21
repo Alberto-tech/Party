@@ -4498,6 +4498,8 @@ function loadSelectProvinciasFromCountry(divName, idCountry, idSelect) {
     //getProvinces();
 
     var html = '<select data-corners="false" id="' + idSelect + '" data-native-menu="false" data-theme="b" style="">';
+    
+    html = html + '<option value="vacio"><label style="color:white;text-transform: uppercase;"></label></option>';
 
     for (var i = 0; i < PROVINCIAS.length; i++) {
 
@@ -5678,7 +5680,7 @@ function pantallaRegistroPago() {
             
             console.log("");
 
-            if (email == email_re && pass == pass_re && name != "" && apellidos != "" && tel != "" && dni != "" && direc != "" && num_direc != "" && postal != "" && ciudad != "") { //codpos != "" &&
+            if (email == email_re && pass == pass_re && name != "" && apellidos != "" && tel != "" && dni != "" && direc != "" && num_direc != "" && postal != "" && ciudad != "" && selectCountry != "" && selectProvince_2 != "vacio" ) { //codpos != "" &&
 
                 console.log("Todos los campos ok");
                 sendRegistroDomicilio(email, pass, postal,

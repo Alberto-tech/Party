@@ -2788,7 +2788,7 @@ function sendRegistroDomicilio(user, password, userPostalCode,
 
             if (response.result == 1) {
 
-                console.log("Todo ok");
+                console.log("Todo ok - register");
                 console.log(response);
                 LOGGED = true;
                 //console.log(response.info);

@@ -29,6 +29,19 @@ $(document).bind("mobileinit", function () {
 
 });
 
+document.onclick = function (event) {
+
+    //console.log("Reiniciamos el salvapantallas");
+    clearTimeout(protector);
+
+    //protector = setInterval(function () {
+    protector = setTimeout(function () {
+        logout();
+        displayScreenSaver();
+    }, idleTime);
+
+};
+
 
 /******************************************
 Esto se ejecuta antes que la app se inicie
@@ -39,14 +52,17 @@ $(document).ready(function () {
     $(window).scroll(function () {
 
         //console.log("Mas scroll y reinicar tiempo salvapantallas");
-        clearInterval(protector);
+        //clearInterval(protector);
 
         $('#principal').show();
         $('#contentPopupScreenSaver').hide();
 
-        clearInterval(protector);
+        //clearInterval(protector);
+        //console.log("Reiniciamos el salvapantallas");
+        clearTimeout(protector);
 
-        protector = setInterval(function () {
+        //protector = setInterval(function () {
+        protector = setTimeout(function () {
             logout();
             displayScreenSaver();
         }, idleTime);
@@ -61,25 +77,30 @@ $(document).ready(function () {
     });
 
     $(document).on("scrollstart", function () {
-        
-        //console.log("Limpiamos el salva con el scroll");
-        clearInterval(protector);
 
-        protector = setInterval(function () {
+        //console.log("Limpiamos el salva con el scroll");
+        //console.log("Reiniciamos el salvapantallas");
+        clearTimeout(protector);
+
+        //protector = setInterval(function () {
+        protector = setTimeout(function () {
+            //console.log("Reiniciamos el salvapantallas");
             logout();
             displayScreenSaver();
         }, idleTime);
-        
+
     });
 
 
     $(this).bind('touchstart', function preventZoom(e) {
 
         //console.log("-----------------> Hola soy un log!! -------------------------------------"); // TEMP !!
+        console.log("Reiniciamos el salvapantallas mobil");
+        clearTimeout(protector);
 
-        clearInterval(protector);
-
-        protector = setInterval(function () {
+        //protector = setInterval(function () {
+        protector = setTimeout(function () {
+            console.log("Reiniciamos el salvapantallas");
             logout();
             displayScreenSaver();
         }, idleTime);
@@ -170,11 +191,10 @@ $(document).ready(function () {
     });
 
     //Protector de pantalla de la app
-    protector = setInterval(function () {
+    protector = setTimeout(function () {
         logout();
         displayScreenSaver();
     }, idleTime);
-
 
 
     var htmlHeader_menu = '<div id="barra_sup" style="position:relative" onclick="changeIdiomPopUp();">' +
