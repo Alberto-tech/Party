@@ -17,7 +17,7 @@ function getLogin(usario, contraseña) {
         type: 'POST',
         timeout: 10000, //10 seg
         success: function (response) {
-            
+
             console.log(response);
 
             if (response.result == 1) {
@@ -2043,7 +2043,7 @@ function sendOrder() {
                 console.log("Order guardado correctamente");
                 ID_ORDER = response.idOrder;
             } else if (parseInt(response.result) == parseInt(0)) {
-               console.log("Problemas con la cesta");
+                console.log("Problemas con la cesta");
             } else {
                 console.log("Problemas con la cesta");
             }
@@ -2398,41 +2398,51 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
 
     var prodAux = [];
 
-    if ((OPCIONPEDIDO == 3 && OPCIONENTREGA == 'shop') || (OPCIONPEDIDO == 2 && OPCIONENTREGA == 'shop')) { //recoge los articulos de tienda y paga el online solo enviamos los articulos online
-        
+    if ((OPCIONPEDIDO == 3) || (OPCIONPEDIDO == 2 && OPCIONENTREGA == 'shop')) { //recoge los articulos de tienda y paga el online solo enviamos los articulos online
+
         var aux = 0;
+
         for (var i = 0; i < CART.length; i++) {
 
-            if (CART[i].stock_x_store == 0 && CART[i].stock_x_central_store > 0) {
+            if (parseInt(CART[i].price_x_region[0].exclusiveWeb) == 0) {
+
+                if (parseInt(CART[i].stock_x_store) == 0 && parseInt(CART[i].stock_x_central_store) > 0) {
+
+                    prodAux[aux] = CART[i];
+                    aux++;
+
+                } else {
+
+                    if (parseInt(CART[i].online_quantity) > 0) { //se añaden tambien los prod que tienen parte online
+                        prodAux[aux] = CART[i];
+                        prodAux[aux].quantity = CART[i].online_quantity;
+                        aux++;
+                    }
+
+                }
+
+            } else {
 
                 prodAux[aux] = CART[i];
                 aux++;
 
-            } else {
-
-                if (CART[i].online_quantity > 0) { //se añaden tambien los prod que tienen parte online
-                    prodAux[aux] = CART[i];
-                    prodAux[aux].quantity = CART[i].online_quantity;
-                    aux++;
-                }
-
             }
         }
-        
+
     } else {
-        
+
         prodAux = CART;
-        
+
     }
 
     for (var i = 0; i < prodAux.length; i++) {
-        
+
         console.log("Prod a enviar");
         console.log(prodAux[i]);
         basePriceCount += parseFloat(prodAux[i].price_x_region[0].basePrice) * prodAux[i].quantity;
         taxPriceCount += parseFloat(prodAux[i].price_x_region[0].taxPrice) * prodAux[i].quantity;
         totalPriceCount += parseFloat(prodAux[i].price_x_region[0].totalPrice) * prodAux[i].quantity;
-        
+
     }
 
     console.log("Productos a enviar es:");
@@ -2517,7 +2527,7 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
 
     console.log("Mis datos son");
     console.log(dataSend);
-    
+
     var request = $.ajax({
         data: dataSend,
         url: urlServices + 'sendBasketAndOrder.php',
@@ -2530,12 +2540,12 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
             console.log(response);
 
             if (response.result == -1) {
-                
+
                 $("#popupCargando").popup("close");
                 console.log("Faltan parametros");
-                
+
             } else {
-                
+
                 $("#popupCargando").popup("close");
 
                 html = '<center>' +
@@ -2575,7 +2585,7 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
                 alert("Error de TimeOut... compruebe su conexion de internet");
 
             } else {
-                
+
                 console.log(response);
 
                 $("#texto_popup").text("Error de ws");

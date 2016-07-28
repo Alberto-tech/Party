@@ -852,36 +852,46 @@ function calcularTotalStoreOnline() {
 
     for (var i = 0; i < CART.length; i++) {
 
-        if (CART[i].stock_x_store > 0 && CART[i].stock_x_central_store > 0) {
+        if (parseInt(CART[i].price_x_region[0].exclusiveWeb) == 0) { //no es exclusivo web
 
-            CART.productosEnTienda = CART.productosEnTienda + 1;
-            CART.productosEnWeb = CART.productosEnWeb + 1;
+            if (parseInt(CART[i].stock_x_store) > 0 && parseInt(CART[i].stock_x_central_store) > 0) {
 
-            var sumarPrecio = parseFloat(CART[i].store_quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
+                CART.productosEnTienda = CART.productosEnTienda + 1;
+                CART.productosEnWeb = CART.productosEnWeb + 1;
 
-            CART.precioTotalProductosTienda = parseFloat(CART.precioTotalProductosTienda) + parseFloat(sumarPrecio);
-            CART.precioTotalProductosWeb = parseFloat(CART.precioTotalProductosWeb) + parseFloat(sumarPrecio);
+                var sumarPrecio = parseFloat(CART[i].store_quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
 
-            if (CART[i].online_quantity > 0) {
-                console.log("Excede del stock en tienda -> añadimos tambien en online");
+                CART.precioTotalProductosTienda = parseFloat(CART.precioTotalProductosTienda) + parseFloat(sumarPrecio);
+                CART.precioTotalProductosWeb = parseFloat(CART.precioTotalProductosWeb) + parseFloat(sumarPrecio);
+
+                if (parseInt(CART[i].online_quantity) > 0) {
+                    console.log("Excede del stock en tienda -> añadimos tambien en online");
+                    CART.productosSoloEnWeb = CART.productosSoloEnWeb + 1;
+                    var sumarPrecio = parseFloat(CART[i].online_quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
+                    CART.precioTotalProductosSoloWeb = parseFloat(CART.precioTotalProductosSoloWeb) + parseFloat(sumarPrecio);
+                }
+
+            } else if (parseInt(CART[i].stock_x_store) == 0 && parseInt(CART[i].stock_x_central_store) > 0) {
+
                 CART.productosSoloEnWeb = CART.productosSoloEnWeb + 1;
-                var sumarPrecio = parseFloat(CART[i].online_quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
+
+                var sumarPrecio = parseFloat(CART[i].quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
                 CART.precioTotalProductosSoloWeb = parseFloat(CART.precioTotalProductosSoloWeb) + parseFloat(sumarPrecio);
+
+            } else if (parseInt(CART[i].stock_x_store) > 0 && parseInt(CART[i].stock_x_central_store) == 0) {
+
+                CART.productosSoloEnTienda = CART.productosSoloEnTienda + 1;
+
+                var sumarPrecio = parseFloat(CART[i].quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
+                CART.precioTotalProductosSoloTienda = parseFloat(CART.precioTotalProductosSoloTienda) + parseFloat(sumarPrecio);
+
             }
 
-        } else if (CART[i].stock_x_store == 0 && CART[i].stock_x_central_store > 0) {
-
+        } else {
+            
             CART.productosSoloEnWeb = CART.productosSoloEnWeb + 1;
-
             var sumarPrecio = parseFloat(CART[i].quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
             CART.precioTotalProductosSoloWeb = parseFloat(CART.precioTotalProductosSoloWeb) + parseFloat(sumarPrecio);
-
-        } else if (CART[i].stock_x_store > 0 && CART[i].stock_x_central_store == 0) {
-
-            CART.productosSoloEnTienda = CART.productosSoloEnTienda + 1;
-
-            var sumarPrecio = parseFloat(CART[i].quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
-            CART.precioTotalProductosSoloTienda = parseFloat(CART.precioTotalProductosSoloTienda) + parseFloat(sumarPrecio);
 
         }
 
