@@ -3395,7 +3395,7 @@ function displayPantallaIntermediaAsistFiestas(data) {
         '<h4 style="margin-top:25%;"><label id="label_num_per_fiesta" style="font-size:20px">' + jsonIdiomas.asistente_fiestas.label_num_per_fiesta + '</label></h4>' +
         '<div class="ui-grid-c" style="width: 75%;">' +
         '<div class="ui-block-a">' +
-        '<img src="img/a_fiesta_u_ico.jpg" />' +
+        '<img src="img/a_fiesta_u_ico.png" />' +
         '</div>' +
         '<div class="ui-block-b" onclick=\'$("#personas_fiesta").val("4");\'>' +
         '<img src="img/4.png" />' +

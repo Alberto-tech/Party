@@ -198,7 +198,7 @@ $(document).ready(function () {
 
 
     var htmlHeader_menu = '<div id="barra_sup" style="position:relative" onclick="changeIdiomPopUp();">' +
-        '<img src="css/icons/header.jpg" width="100%" style="height: 38px;"><div id="banderas" style="position:absolute; top:0px;right: 0px;margin-top: .5%;margin-right: 3%;">' +
+        '<img src="css/icons/header.png" width="100%" style="height: 38px;"><div id="banderas" style="position:absolute; top:0px;right: 0px;margin-top: .5%;margin-right: 3%;">' +
         /*'<a onclick="changeIdiomPopUp();"><img id="img_banderas" src="css/banderas/idioma_codigo.png"  style="width: 30px;margin-right: 5px;height: 20px;margin-top: 5px;"></a>' +*/
         '<a onclick="changeIdiomPopUp();"><label id="label_idioma" style="color: rgb(255, 255, 255);text-transform:uppercase;" >ES</label></a>' +
         '</div>';
