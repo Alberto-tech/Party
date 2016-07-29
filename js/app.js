@@ -1153,15 +1153,17 @@ function addToCartAlter(id_prod_alter, id_produc) {
             productosEnWeb++;
         }*/
 
-        updateVariblesTiposDeProducto(CART[j], false); // Actualizo variables quitando el producto sustituido
-        updateVariblesTiposDeProducto(product, true); // Actualizo variables poniendo el producto sustituto
+        //updateVariblesTiposDeProducto(CART[j], false); // Actualizo variables quitando el producto sustituido
+        //updateVariblesTiposDeProducto(product, true); // Actualizo variables poniendo el producto sustituto
 
         PRODUCTS.push(product);
         //displayItemOperations(id_prod_alter, cantidad);
 
     }
 
-    updateOpcionCompraProducto();
+    updateOpcionCompraProducto();//actualizamos las opciones para la compra
+    
+    calcularTotalStoreOnline();//añadimos los prod en tienda, web, etc
 
     refreshDisplayProducts(TEMP_PRODUCTS, product, id_produc);
 

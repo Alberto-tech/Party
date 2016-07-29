@@ -2678,7 +2678,8 @@ function displayItemAlter(id_prod_alter, id_product, idnode) {
     }
 
     html = '<ul data-role="listview" data-inset="true">' +
-        '<li data-role="list-divider" data-theme="c"><h2 style="margin:5px">' + aux_prod.name + ' - ' + aux_prod.sku + '</h2><span class="ui-li-count" style="margin-right: 3%;">' + aux_prod.quantity + '</span></li>' +
+        //'<li data-role="list-divider" data-theme="c"><h2 style="margin:5px">' + aux_prod.name + ' - ' + aux_prod.sku + '</h2><span class="ui-li-count" style="margin-right: 3%;">' + aux_prod.quantity + '</span></li>' +
+        '<li data-role="list-divider" data-theme="c"><span style="margin-right: 6%;">' + aux_prod.name + ' - ' + aux_prod.sku + '</span><span style="margin-right: 1%;";>STOCK TIENDA: ' + PRODUCTS[i].stock_x_store + '</span><span>STOCK ONLINE: ' + PRODUCTS[i].stock_x_central_store + '</span></li>' +
         '<li>' +
         '<div class="ui-grid-a">' +
         '<div class="ui-block-a"><img src="' + imgLinkExt + '" style="width: 325px;max-height: 350px;"></div>' +
