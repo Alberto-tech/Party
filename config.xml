@@ -71,7 +71,7 @@
     <gap:plugin name="org.apache.cordova.vibration" />
     <gap:plugin name="com.phonegap.plugin.statusbar" />-->
     
-    <gap:plugin name="org.apache.cordova.splashscreen" spec="0.2.7"/>
+    <gap:plugin name="org.apache.cordova.splashscreen"/>
 
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
