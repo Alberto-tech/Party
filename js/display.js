@@ -628,9 +628,12 @@ function refreshDisplayProducts(data, productAlter, id_produc) {
 
     $("#popupCargando").popup("close");
 
-    updatePrecioTotalArticulo(); // TEMP !!
-    updateCarritoDisplay();
-    translateButtons(idiomStore);
+    //updatePrecioTotalArticulo(); // TEMP !!
+    //updateCarritoDisplay();
+    //translateButtons(idiomStore);
+    updateOpcionCompraProducto(); //actualizamos las opciones para la compra
+
+    calcularTotalStoreOnline(); //añadimos los prod en tienda, web, etc
 }
 
 /**
@@ -1575,7 +1578,7 @@ function displayProducts(data, originNode, originName, param, param4) {
                 } else if (parseInt(stock) == 0) {
                     imgStock = "css/maqueta/barraRojo.png";
                 }
-               
+
 
                 //if (data.products[i].stock_x_store == 0) {
                 if (data.products[i].price_x_region[0].exclusiveWeb == 1 || data.products[i].stock_x_store == 0) {
@@ -2937,7 +2940,7 @@ function displayPopupItemDetail(id, param, idproduct) {
 
                     var ubicacion = PRODUCTS[i].position_x_store.section + ' ' + PRODUCTS[i].position_x_store.module + ' ' + PRODUCTS[i].position_x_store.position;
 
-                    if (PRODUCTS[i].position_x_store.section == undefined){
+                    if (PRODUCTS[i].position_x_store.section == undefined) {
                         ubicacion = "";
                     }
 
@@ -4218,7 +4221,7 @@ function opcionesEnvio(casoEnvio, totalCesta) { //TEMP
 }
 
 
-function sistemasPago(soloOnline) { 
+function sistemasPago(soloOnline) {
 
     console.log('--> sistemasPago ' + soloOnline);
 
@@ -4499,7 +4502,7 @@ function loadSelectProvinciasFromCountry(divName, idCountry, idSelect) {
     //getProvinces();
 
     var html = '<select data-corners="false" id="' + idSelect + '" data-native-menu="false" data-theme="b" style="">';
-    
+
     html = html + '<option value="vacio"><label style="color:white;text-transform: uppercase;"></label></option>';
 
     for (var i = 0; i < PROVINCIAS.length; i++) {
@@ -5678,10 +5681,10 @@ function pantallaRegistroPago() {
             var ciudad = $('#in_ciudad').val();
             var selectCountry = $('#selectCountry').val();
             var selectProvince_2 = $('#selectProvince_2').val();
-            
+
             console.log("");
 
-            if (email == email_re && pass == pass_re && name != "" && apellidos != "" && tel != "" && dni != "" && direc != "" && num_direc != "" && postal != "" && ciudad != "" && selectCountry != "" && selectProvince_2 != "vacio" ) { //codpos != "" &&
+            if (email == email_re && pass == pass_re && name != "" && apellidos != "" && tel != "" && dni != "" && direc != "" && num_direc != "" && postal != "" && ciudad != "" && selectCountry != "" && selectProvince_2 != "vacio") { //codpos != "" &&
 
                 console.log("Todos los campos ok");
                 sendRegistroDomicilio(email, pass, postal,

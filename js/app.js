@@ -1055,7 +1055,7 @@ function addToCartAlter(id_prod_alter, id_produc) {
     var aux_prod;
     var cantidad;
     var foundInCart = 0;
-    var units = units_alt = 0;
+    var units = units_alt = aux_carac = 0;
     var j, i;
 
     for (var i = 0; i < PRODUCTS_ALTER.length; i++) { //buscamos el producto alternativo
@@ -1072,6 +1072,7 @@ function addToCartAlter(id_prod_alter, id_produc) {
 
                     var unidades = caracteristicas.name;
                     units_alt = unidades.split(' ');
+                    aux_carac = units_alt[0];
                     break;
 
                 } else {
@@ -1107,7 +1108,7 @@ function addToCartAlter(id_prod_alter, id_produc) {
 
     if (foundInCart == 1) { // se ha encontrado el producto en el carrito podemos sustituirlo
 
-        if (parseInt(num_personas_fiesta) < parseInt(units_alt[0])) {
+        if (parseInt(num_personas_fiesta) < parseInt(aux_carac) {
 
             for (var k = 0; k < product.caracteristics.length; k++) {
 
@@ -1121,7 +1122,7 @@ function addToCartAlter(id_prod_alter, id_produc) {
                 } else {
 
                     units = 1;
-                    continue;
+                    break;
 
                 }
             }
@@ -1158,14 +1159,12 @@ function addToCartAlter(id_prod_alter, id_produc) {
 
         PRODUCTS.push(product);
         //displayItemOperations(id_prod_alter, cantidad);
+        
+        refreshDisplayProducts(TEMP_PRODUCTS, product, id_produc);
 
     }
 
-    updateOpcionCompraProducto();//actualizamos las opciones para la compra
     
-    calcularTotalStoreOnline();//añadimos los prod en tienda, web, etc
-
-    refreshDisplayProducts(TEMP_PRODUCTS, product, id_produc);
 
 }
 
