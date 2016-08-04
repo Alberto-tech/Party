@@ -857,14 +857,14 @@ function calcularTotalStoreOnline() {
                     CART.precioTotalProductosSoloWeb = parseFloat(CART.precioTotalProductosSoloWeb) + parseFloat(sumarPrecio);
                 }
 
-            } else if (parseInt(CART[i].stock_x_store) == 0 && parseInt(CART[i].stock_x_central_store) > 0) {
+            } else if (parseInt(CART[i].stock_x_store) <= 0 && parseInt(CART[i].stock_x_central_store) > 0) {
 
                 CART.productosSoloEnWeb = CART.productosSoloEnWeb + 1;
 
                 var sumarPrecio = parseFloat(CART[i].quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
                 CART.precioTotalProductosSoloWeb = parseFloat(CART.precioTotalProductosSoloWeb) + parseFloat(sumarPrecio);
 
-            } else if (parseInt(CART[i].stock_x_store) > 0 && parseInt(CART[i].stock_x_central_store) == 0) {
+            } else if (parseInt(CART[i].stock_x_store) > 0 && parseInt(CART[i].stock_x_central_store) <= 0) {
 
                 CART.productosSoloEnTienda = CART.productosSoloEnTienda + 1;
 

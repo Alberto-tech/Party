@@ -3257,6 +3257,8 @@ function loadMenu(data) {
     translateButtons(idiomStore);
 
     $('#btn_finalizarpedido').click(function () { // develop 1
+        
+        updateOpcionCompraProducto();
 
         console.log('Handler for .click() called. con opcionCompraProductos ' + opcionCompraProductos + ' productosEnTienda ' + CART.productosEnTienda + ' productosEnWeb ' + CART.productosEnWeb);
         opcionesPago();
@@ -4022,6 +4024,8 @@ function displayPantallaPreviaDisfraces(idNode, nodeName, isAlgo, aux, backPage)
 
 
 function opcionesPago() { //TEMP
+    
+    updateOpcionCompraProducto();
 
     $("#btn_finalizarpedido").addClass("btn_disabled");
 
@@ -4070,11 +4074,11 @@ function opcionesPago() { //TEMP
             '<center>' +
             '<h2 style="margin: 1% 0 1% 0;color:#0197d4">' + jsonIdiomas.proceso_pago.tl_tres + ' ' + prodTienda + ' ' + jsonIdiomas.proceso_pago.tl_quatro + '<br>' + jsonIdiomas.proceso_pago.tl_tres + ' ' + prodWeb + ' ' + jsonIdiomas.proceso_pago.tl_cinco + '</h2>' +
             '<h4 style="margin: 0 0 1% 0;color:#0197d4">' + jsonIdiomas.proceso_pago.tl_pregunta + '</h4>' +
-            '<div style="width: 50%;margin: 0% 0% 1% 0%;" onclick="pagarEnCaja();OPCIONPEDIDO=1;">' +
+            ((parseInt(CART.productosSoloEnTienda) > 0 || parseInt(CART.productosEnTienda) > 0) ? '<div style="width: 50%;margin: 0% 0% 1% 0%;" onclick="pagarEnCaja();OPCIONPEDIDO=1;">' +
             '<div style="background-color: #0197d4;color: white;text-align: left;width: 100%;height: 45px;line-height: 45px;" class="ui-grid-a"><div class="ui-block-a" style="width: 10%;height: 45px;"><img src="http://partyfiesta.youtter.com/app/alb/img/tienda.png" style="width: 45px;"></div><div class="ui-block-b" style="width: 90%;height: 45px;text-align: left;"><label>' + jsonIdiomas.proceso_pago.tl_ocho + '</label></div></div>' +
             '<div style="background-color: #d8d8d8;color: black;text-align: right;width: 100%;height: 40px;line-height: 40px;border-bottom: 2px solid #ccc;" class="ui-grid-solo"><div class="ui-block-a" style="padding-right: 20px;"><label>Total cesta(solo tiene en cuenta los articulos en tienda): <strong font-size: 20px;>' + formatoNumero(precioTienda, 2, ",", ".", "€") + '</strong></label></div></div>' +
             '<div style="background-color: #d8d8d8;color: black;text-align: right;width: 100%;height: 40px;line-height: 40px;" class="ui-grid-solo"><div class="ui-block-a" style="padding-right: 20px;"><label style="font-style: italic;">' + prodTienda + ' producto disponibles</label></div></div>' +
-            '</div>' +
+            '</div>' : '' ) +
             //si hay prod en solo tienda no podremos compra online
             (parseInt(CART.productosSoloEnTienda) > 0 ? '' :
                 '<div style="width: 50%;margin: 0% 0% 1% 0%;" onclick="getSendPrice(' + CART.ammount + ');OPCIONPEDIDO=2;">' +
@@ -4082,11 +4086,11 @@ function opcionesPago() { //TEMP
                 '<div style="background-color: #d8d8d8;color: black;text-align: right;width: 100%;height: 40px;line-height: 40px;border-bottom: 2px solid #ccc;" class="ui-grid-solo"><div class="ui-block-a" style="padding-right: 20px;"><label>Total cesta: <strong font-size: 20px;>' + formatoNumero(parseFloat(CART.ammount), 2, ",", ".", "€") + '</strong></label></div></div>' +
                 '<div style="background-color: #d8d8d8;color: black;text-align: right;width: 100%;height: 40px;line-height: 40px;" class="ui-grid-solo"><div class="ui-block-a" style="padding-right: 20px;"><label style="font-style: italic;">' + CART.length + ' producto disponibles</label></div></div>' +
                 '</div>') +
-            '<div style="width: 50%;margin: 0% 0% 1% 0%;" onclick="getSendPrice(' + CART.precioTotalProductosSoloWeb + ');OPCIONPEDIDO=3;">' +
+            ((parseInt(CART.productosSoloEnWeb) > 0 && parseInt(CART.productosEnTienda) > 0) ? '<div style="width: 50%;margin: 0% 0% 1% 0%;" onclick="getSendPrice(' + CART.precioTotalProductosSoloWeb + ');OPCIONPEDIDO=3;">' +
             '<div style="background-color: #0197d4;color: white;text-align: left;width: 100%;height: 45px;line-height: 45px;" class="ui-grid-a"><div class="ui-block-a" style="width: 10%;height: 45px;"><img src="http://partyfiesta.youtter.com/app/alb/img/tienda.png" style="width: 45px;"></div><div class="ui-block-b" style="width: 90%;height: 45px;text-align: left;"><label style="font-size: smaller;">' + jsonIdiomas.proceso_pago.tl_diez + '</label></div></div>' +
             '<div style="background-color: #d8d8d8;color: black;text-align: right;width: 100%;height: 40px;line-height: 40px;border-bottom: 2px solid #ccc;" class="ui-grid-solo"><div class="ui-block-a" style="padding-right: 20px;"><label>Total cesta(solo tiene en cuenta los articulos web): <strong font-size: 20px;>' + formatoNumero(parseFloat(CART.precioTotalProductosSoloWeb), 2, ",", ".", "€") + '</strong></label></div></div>' +
             '<div style="background-color: #d8d8d8;color: black;text-align: right;width: 100%;height: 40px;line-height: 40px;" class="ui-grid-solo"><div class="ui-block-a" style="padding-right: 20px;"><label style="font-style: italic;">' + CART.length + ' producto disponibles</label></div></div>' +
-            '</div>' +
+            '</div>' : '' ) +
             '<div class="ui-grid-a" style="width: 50%;background-color:#dd3324;margin: 1% 0 0 0;" onclick="$(\'#popupConfirmacionCancelarPedido\').popup(\'open\');"><div class="ui-block-a" style="width: 90%;height: 45px;color:white;text-transform: uppercase;line-height: 45px;">Cancelar pedido</div><div class="ui-block-b" style="width: 10%;height: 45px;"><img src="http://partyfiesta.youtter.com/app/alb/img/X.png" style="width: 45px;"></div></div>' +
             '</center>' +
             '</div>';

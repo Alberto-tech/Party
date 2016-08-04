@@ -427,6 +427,8 @@ $(document).ready(function () {
 
             }
 
+            updateOpcionCompraProducto();
+
             $("#spBtnPopupCartAmmount").text(formatoNumero(CART.ammount, 2, ",", ".", "€"));
 
             updateVariblesTiposDeProducto(CART[i], false); // TEMP !! actulizamos variables.
