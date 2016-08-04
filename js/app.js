@@ -1108,7 +1108,7 @@ function addToCartAlter(id_prod_alter, id_produc) {
 
     if (foundInCart == 1) { // se ha encontrado el producto en el carrito podemos sustituirlo
 
-        if (parseInt(num_personas_fiesta) < parseInt(aux_carac) {
+        if (parseInt(num_personas_fiesta) < parseInt(aux_carac)) {
 
             for (var k = 0; k < product.caracteristics.length; k++) {
 
@@ -1125,6 +1125,7 @@ function addToCartAlter(id_prod_alter, id_produc) {
                     break;
 
                 }
+
             }
 
             cantidad = Math.ceil(parseInt(num_personas_fiesta) / parseInt(units));
@@ -1159,12 +1160,10 @@ function addToCartAlter(id_prod_alter, id_produc) {
 
         PRODUCTS.push(product);
         //displayItemOperations(id_prod_alter, cantidad);
-        
+
         refreshDisplayProducts(TEMP_PRODUCTS, product, id_produc);
 
     }
-
-    
 
 }
 

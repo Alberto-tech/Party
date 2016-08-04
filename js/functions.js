@@ -430,31 +430,17 @@ function cancelaPedido() {
  */
 function updateOpcionCompraProducto() { // dev 29-03-2016
 
-    //console.log('-> Recalculamos opcionCompraProductos, antes valia: ' + opcionCompraProductos);
-
-    //if (CART.length == 0) {
-    // opcionCompraProductos = 1;
-    //} else {
-
-    /*if (CART.length - CART.productosEnTienda == 0 || CART.length - CART.productosSoloEnTienda == 0 && CART.productosSoloEnWeb == 0 ) { // 1- Todos los productos estan en tienda i productosEnWeb
+    console.log("Tienda :"+parseInt(CART.productosEnTienda)+" Solo tienda "+ parseInt(CART.productosSoloEnTienda)+" WEB "+parseInt(CART.productosEnWeb)+" Solo WEB "+parseInt(CART.productosSoloEnWeb));
+    
+    if ( parseInt(CART.productosEnTienda) > 0 && parseInt(CART.productosSoloEnTienda) == 0 && parseInt(CART.productosEnWeb) > 0 && parseInt(CART.productosSoloEnWeb) == 0) { // 1- Todos los productos estan en tienda i productosEnWeb
         opcionCompraProductos = 1;
-    } else if (CART.productosEnTienda > 0 && CART.productosEnTienda < CART.length && CART.productosSoloEnWeb > 0 ) { // 2- Existe algun producto en tienda y otro online
-        opcionCompraProductos = 2;
-    } else if (CART.productosEnTienda == 0 || CART.productosSoloEnTienda == 0) { // 3- Ningun producto en tienda
-        opcionCompraProductos = 3;
-    }*/
-
-
-    if ((parseInt(CART.productosEnTienda) > 0 || parseInt(CART.productosSoloEnTienda) > 0) && parseInt(CART.productosEnWeb) == 0 && parseInt(CART.productosSoloEnWeb) == 0) { // 1- Todos los productos estan en tienda i productosEnWeb
-        opcionCompraProductos = 1;
-    } else if ((parseInt(CART.productosEnTienda) > 0 || parseInt(CART.productosSoloEnTienda) > 0) && (parseInt(CART.productosEnWeb) > 0 || parseInt(CART.productosSoloEnWeb) > 0)) { // 2- Existe algun producto en tienda y online
+    } else if (parseInt(CART.productosSoloEnTienda) > 0 || parseInt(CART.productosSoloEnWeb) > 0) { // 2- Existe algun producto que no esta en tienda o online
+    //} else if ((parseInt(CART.productosEnTienda) > 0 || parseInt(CART.productosSoloEnTienda) > 0) && (parseInt(CART.productosEnWeb) > 0 || parseInt(CART.productosSoloEnWeb) > 0)) { // 2- Existe algun producto en tienda y online
         opcionCompraProductos = 2;
     } else if (parseInt(CART.productosEnTienda) == 0 && parseInt(CART.productosSoloEnTienda) == 0) { // 3- Ningun producto en tienda
         console.log("Tienda " + CART.productosEnTienda + " WEB " + CART.productosSoloEnTienda);
         opcionCompraProductos = 3;
     }
-
-    // }
 
     console.log('opcionCompraProductos -> Ahora vale: ' + opcionCompraProductos);
 }
