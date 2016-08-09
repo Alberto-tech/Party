@@ -1075,10 +1075,16 @@ function addToCartAlter(id_prod_alter, id_produc) {
                     var unidades = caracteristicas.name;
                     units_alt = unidades.split(' ');
                     aux_carac = units_alt[0];
+                    if (parseInt(num_personas_fiesta) <= parseInt(aux_carac)) {
+                        cantidad = 1;
+                    } else {
+                        cantidad = Math.ceil(parseInt(num_personas_fiesta) / parseInt(aux_carac));
+                    }
                     break;
 
                 } else {
 
+                    cantidad = 1;
                     aux_carac = 1;
                     continue;
 
@@ -1110,79 +1116,37 @@ function addToCartAlter(id_prod_alter, id_produc) {
 
     if (foundInCart == 1) { // se ha encontrado el producto en el carrito podemos sustituirlo
 
-        if (parseInt(num_personas_fiesta) < parseInt(aux_carac)) {
+        console.log("Cantidad unidades prod alternativo " + aux_carac);
 
+        product.quantity = cantidad;
+        product.original = false;
+        product.dedonde = nodeIds[nodeIds.length - 1];
+        product.store_quantity = cantidad;
 
-            console.log("Cantidad unidades prod alternativo " + aux_carac);
-            cantidad = 1;
-            product.quantity = cantidad;
-            product.original = false;
-            product.dedonde = nodeIds[nodeIds.length - 1];
-            product.store_quantity = cantidad;
+        console.log("Vamos a cambiarlo ");
+        console.log(product);
 
-
-            console.log("Vamos a cambiarlo ");
-            console.log(product);
-
-
-        } else {
-            
-            for (var k = 0; k < product.caracteristics.length; k++) {
-
-                var caracteristicas = product.caracteristics[k];
-                if (caracteristicas.type == "9") {
-
-                    var unidades = caracteristicas.name;
-                    units = unidades.split(' ');
-                    console.log("Unidades " + units);
-                    break;
-
-                } else {
-
-                    units = 1;
-                    console.log("Unidades " + units);
-                    break;
-
-                }
-
-            }
-            
-            cantidad = Math.ceil(parseInt(num_personas_fiesta) / parseInt(aux_carac));
-            console.log("Cantidad prod alternativo " + cantidad + " unidades " + aux_carac);
-            product.quantity = cantidad;
-            product.store_quantity = product.quantity;
-            product.original = false; //este campo indica si el articulo ha sido sustituido o no
-            product.dedonde = nodeIds[nodeIds.length - 1];
-
-        }
-
-        calcularTotalStoreOnline();
-
-        updateOpcionCompraProducto();
-
-
-        //console.log(CART[j]);
-        //var precio_new_art = parseInt(product.quantity) * parseInt(product.price_x_region[0].totalPrice);
         CART.push(product);
 
         CART.ammount = parseFloat(CART.ammount) + parseFloat(product.store_quantity * product.price_x_region[0].totalPrice);
 
         $("#spBtnPopupCartAmmount").text(formatoNumero(CART.ammount, 2, ",", ".", "€"));
 
-        //PRODUCTS.push(product);
-        //displayItemOperations(product.id, parseInt(product.quantity));
-
-        updateCarritoDisplay();
-
-        updateOpcionCompraProducto();
-
-        updatePrecioTotalArticulo(); // TEMP !!
-
-        refreshDisplayProducts(TEMP_PRODUCTS, product, id_produc);
-
     }
 
+    calcularTotalStoreOnline();
+
+    updateCarritoDisplay();
+
+    updateOpcionCompraProducto();
+
+    updatePrecioTotalArticulo(); // TEMP !!
+
+    refreshDisplayProducts(TEMP_PRODUCTS, product, id_produc);
+
 }
+
+
 
 function deleteItemCart(position) { // develop 4
 
