@@ -743,8 +743,8 @@ function carrito(id_producto, operacion, precio) {
 /********************************************************************************************************************
   Esta funcion sirve para añadir o restar articulos al carrito del cliente y hacer los cambios en la interfaz grafica
   Parametros : 
-  producto: info del producto a guardar
-  operacion: si es añadir o restar articulos  1 sera sumar  0 restar
+  item: info del producto a guardar
+  param: si es añadir o restar articulos  1 sera sumar  0 restar
 *********************************************************************************************************************/
 
 function addToCart(item, param, aux) {
@@ -786,7 +786,7 @@ function addToCart(item, param, aux) {
 
                         //updateVariblesTiposDeProducto(product, (param > 0 ? true : false), foundInCart); //actulizamos variables del carrito para el pago.
 
-                        calcularTotalStoreOnline();
+                        calcularTotalStoreOnline(param);
 
                         updateOpcionCompraProducto();
 
@@ -1099,8 +1099,8 @@ function addToCartAlter(id_prod_alter, id_produc) {
             console.log(CART[j]);
 
             foundInCart = 1;
+            CART.ammount = parseFloat(CART.ammount) - (parseFloat(CART[j].quantity * CART[j].price_x_region[0].totalPrice));
             CART[j].quantity = 0;
-
             break;
         }
     }
@@ -1112,6 +1112,21 @@ function addToCartAlter(id_prod_alter, id_produc) {
 
         if (parseInt(num_personas_fiesta) < parseInt(aux_carac)) {
 
+
+            console.log("Cantidad unidades prod alternativo " + aux_carac);
+            cantidad = 1;
+            product.quantity = cantidad;
+            product.original = false;
+            product.dedonde = nodeIds[nodeIds.length - 1];
+            product.store_quantity = cantidad;
+
+
+            console.log("Vamos a cambiarlo ");
+            console.log(product);
+
+
+        } else {
+            
             for (var k = 0; k < product.caracteristics.length; k++) {
 
                 var caracteristicas = product.caracteristics[k];
@@ -1119,49 +1134,49 @@ function addToCartAlter(id_prod_alter, id_produc) {
 
                     var unidades = caracteristicas.name;
                     units = unidades.split(' ');
+                    console.log("Unidades " + units);
                     break;
 
                 } else {
 
                     units = 1;
+                    console.log("Unidades " + units);
                     break;
 
                 }
 
             }
-
-            cantidad = Math.ceil(parseInt(num_personas_fiesta) / parseInt(units));
+            
+            cantidad = Math.ceil(parseInt(num_personas_fiesta) / parseInt(aux_carac));
+            console.log("Cantidad prod alternativo " + cantidad + " unidades " + aux_carac);
             product.quantity = cantidad;
+            product.store_quantity = product.quantity;
             product.original = false; //este campo indica si el articulo ha sido sustituido o no
-            product.dedonde = nodeIds[nodeIds.length - 1];
-
-        } else {
-
-            cantidad = 1;
-            product.quantity = cantidad;
-            product.original = false;
             product.dedonde = nodeIds[nodeIds.length - 1];
 
         }
 
+        calcularTotalStoreOnline();
 
-        console.log("Vamos a cambiarlo ");
-        console.log(product);
-        console.log(CART[j]);
+        updateOpcionCompraProducto();
+
+
+        //console.log(CART[j]);
         //var precio_new_art = parseInt(product.quantity) * parseInt(product.price_x_region[0].totalPrice);
         CART.push(product);
 
-        /*if (product.stock_x_store > 0) {
-            productosEnTienda++;
-        } else if (product.stock_x_central_store > 0) {
-            productosEnWeb++;
-        }*/
+        CART.ammount = parseFloat(CART.ammount) + parseFloat(product.store_quantity * product.price_x_region[0].totalPrice);
 
-        //updateVariblesTiposDeProducto(CART[j], false); // Actualizo variables quitando el producto sustituido
-        //updateVariblesTiposDeProducto(product, true); // Actualizo variables poniendo el producto sustituto
+        $("#spBtnPopupCartAmmount").text(formatoNumero(CART.ammount, 2, ",", ".", "€"));
 
-        PRODUCTS.push(product);
-        //displayItemOperations(id_prod_alter, cantidad);
+        //PRODUCTS.push(product);
+        //displayItemOperations(product.id, parseInt(product.quantity));
+
+        updateCarritoDisplay();
+
+        updateOpcionCompraProducto();
+
+        updatePrecioTotalArticulo(); // TEMP !!
 
         refreshDisplayProducts(TEMP_PRODUCTS, product, id_produc);
 

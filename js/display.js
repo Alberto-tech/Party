@@ -327,8 +327,8 @@ function displayNode(data, originNode, originName, linkImg, aux) {
 
 function refreshDisplayProducts(data, productAlter, id_produc) {
 
-    console.log(data);
-    console.log(productAlter);
+    //console.log(data);
+    //console.log(productAlter);
 
     PRODUCTS.push(productAlter);
 
@@ -370,16 +370,16 @@ function refreshDisplayProducts(data, productAlter, id_produc) {
                     }
                 }
 
-                cantidad = Math.ceil(parseInt(num_personas_fiesta) / parseInt(units));
+                /*cantidad = Math.ceil(parseInt(num_personas_fiesta) / parseInt(units));
                 productAlter.quantity = cantidad;
                 productAlter.original = false; //este campo indica si el articulo ha sido sustituido o no
-                productAlter.dedonde = nodeIds[nodeIds.length - 1];
+                productAlter.dedonde = nodeIds[nodeIds.length - 1];*/
                 data[a].typeproducts.push(productAlter);
                 break;
             }
         }
     }
-
+    
     for (var j = 0; j < data.length; j++) {
 
 
@@ -613,14 +613,14 @@ function refreshDisplayProducts(data, productAlter, id_produc) {
     console.log(CART.length);
     var precio = productAlter.price_x_region[0].totalPrice;
 
-    if (CART.length < 1) {
+    /*if (CART.length < 1) {
         CART.push(productAlter);
         CART.ammount = parseInt(precio * parseInt(productAlter.quantity));
     } else {
         CART.push(productAlter);
         var ammount = parseInt(CART.ammount);
         CART.ammount = ammount + parseInt(precio * parseInt(productAlter.quantity));
-    }
+    }*/
 
     $("#divContent").html(new_htmlContent);
     $("#divContent").trigger('create');
@@ -630,10 +630,12 @@ function refreshDisplayProducts(data, productAlter, id_produc) {
 
     //updatePrecioTotalArticulo(); // TEMP !!
     //updateCarritoDisplay();
-    //translateButtons(idiomStore);
+    TEMP_PRODUCTS=[];
+    translateButtons(idiomStore);
     updateOpcionCompraProducto(); //actualizamos las opciones para la compra
-
     calcularTotalStoreOnline(); //añadimos los prod en tienda, web, etc
+    updateCarritoDisplay();
+    
 }
 
 /**

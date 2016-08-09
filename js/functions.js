@@ -430,12 +430,12 @@ function cancelaPedido() {
  */
 function updateOpcionCompraProducto() { // dev 29-03-2016
 
-    console.log("Tienda :"+parseInt(CART.productosEnTienda)+" Solo tienda "+ parseInt(CART.productosSoloEnTienda)+" WEB "+parseInt(CART.productosEnWeb)+" Solo WEB "+parseInt(CART.productosSoloEnWeb));
-    
-    if ( parseInt(CART.productosEnTienda) > 0 && parseInt(CART.productosSoloEnTienda) == 0 && parseInt(CART.productosEnWeb) > 0 && parseInt(CART.productosSoloEnWeb) == 0) { // 1- Todos los productos estan en tienda i productosEnWeb
+    console.log("Tienda :" + parseInt(CART.productosEnTienda) + " Solo tienda " + parseInt(CART.productosSoloEnTienda) + " WEB " + parseInt(CART.productosEnWeb) + " Solo WEB " + parseInt(CART.productosSoloEnWeb));
+
+    if (parseInt(CART.productosEnTienda) > 0 && parseInt(CART.productosSoloEnTienda) == 0 && parseInt(CART.productosEnWeb) > 0 && parseInt(CART.productosSoloEnWeb) == 0) { // 1- Todos los productos estan en tienda i productosEnWeb
         opcionCompraProductos = 1;
     } else if (parseInt(CART.productosSoloEnTienda) > 0 || parseInt(CART.productosSoloEnWeb) > 0) { // 2- Existe algun producto que no esta en tienda o online
-    //} else if ((parseInt(CART.productosEnTienda) > 0 || parseInt(CART.productosSoloEnTienda) > 0) && (parseInt(CART.productosEnWeb) > 0 || parseInt(CART.productosSoloEnWeb) > 0)) { // 2- Existe algun producto en tienda y online
+        //} else if ((parseInt(CART.productosEnTienda) > 0 || parseInt(CART.productosSoloEnTienda) > 0) && (parseInt(CART.productosEnWeb) > 0 || parseInt(CART.productosSoloEnWeb) > 0)) { // 2- Existe algun producto en tienda y online
         opcionCompraProductos = 2;
     } else if (parseInt(CART.productosEnTienda) == 0 && parseInt(CART.productosSoloEnTienda) == 0) { // 3- Ningun producto en tienda
         console.log("Tienda " + CART.productosEnTienda + " WEB " + CART.productosSoloEnTienda);
@@ -821,7 +821,7 @@ function anadirMasProd(prod, cant) {
  * Recalculamos todo los articulos para saber cuales estan
  * online y cuales no. También el precio.
  */
-function calcularTotalStoreOnline() {
+function calcularTotalStoreOnline(param) {
 
     //reiniciamos todo para volver a calcularlo
     //precios
@@ -836,9 +836,10 @@ function calcularTotalStoreOnline() {
     CART.productosSoloEnTienda = 0;
     CART.productosSoloEnWeb = 0;
 
+
     for (var i = 0; i < CART.length; i++) {
 
-        if (parseInt(CART[i].price_x_region[0].exclusiveWeb) == 0) { //no es exclusivo web
+        if (parseInt(CART[i].price_x_region[0].exclusiveWeb) == 0 && CART[i].quantity > 0) { //no es exclusivo web
 
             if (parseInt(CART[i].stock_x_store) > 0 && parseInt(CART[i].stock_x_central_store) > 0) {
 
@@ -874,10 +875,12 @@ function calcularTotalStoreOnline() {
             }
 
         } else {
-            
-            CART.productosSoloEnWeb = CART.productosSoloEnWeb + 1;
-            var sumarPrecio = parseFloat(CART[i].quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
-            CART.precioTotalProductosSoloWeb = parseFloat(CART.precioTotalProductosSoloWeb) + parseFloat(sumarPrecio);
+
+            if (CART[i].quantity > 0) {
+                CART.productosSoloEnWeb = CART.productosSoloEnWeb + 1;
+                var sumarPrecio = parseFloat(CART[i].quantity * CART[i].price_x_region[0].totalPrice).toFixed(2);
+                CART.precioTotalProductosSoloWeb = parseFloat(CART.precioTotalProductosSoloWeb) + parseFloat(sumarPrecio);
+            }
 
         }
 
