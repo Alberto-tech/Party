@@ -2451,6 +2451,7 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
     if (OPCIONENVIO == 2 && OPCIONENTREGA == "shop") {
 
         var deliveryAddress = STORE.address;
+        var deliveryNumber = INFO_USU.addressNumber;
         var deliveryPostalCode = STORE.postalCode;
         var deliveryCity = STORE.city;
         var deliveryProvince = STORE.province;
@@ -2463,9 +2464,11 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
         var billingCountry = STORE.country;
         var billingPhone = STORE.phone;
 
+
     } else {
 
         var deliveryAddress = INFO_USU.address;
+        var deliveryNumber = INFO_USU.addressNumber;
         var deliveryPostalCode = INFO_USU.postalCode;
         var deliveryCity = INFO_USU.city;
         var deliveryProvince = INFO_USU.province;

@@ -4242,7 +4242,7 @@ function sistemasPago(soloOnline) {
         '<input type="hidden" name="cmd" value="_cart">' +
         '<input type="hidden" name="upload" value="1">' +
         '<input type="hidden" name="return" value="http://partyfiesta.youtter.com/app/alb/pedido_finalizado.php?email=' + INFO_USU.email.replace(/\s/g, " ") + '&idUser=' + INFO_USU.id + '&shop=' + STORE.id + '">' +
-        '<input type="hidden" name="cancel_return" value="http://partyfiesta.youtter.com/app/alb/">' +
+        '<input type="hidden" name="cancel_return" value="http://partyfiesta-prod.youtter.com:60780/app/alb/">' +
         '<input type="hidden" name="business" value="tiendaonline@partyfiesta.com">';
 
     var add = '';
@@ -4371,7 +4371,7 @@ function sistemasPago(soloOnline) {
 
     $("#paypal").click(function () {
         $("#popupCargando").popup("open");
-        sendBasketAndOrder('cash register');
+        //sendBasketAndOrder('cash register');
         $("#formPaypal").submit();
     });
 

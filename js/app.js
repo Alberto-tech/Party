@@ -950,6 +950,65 @@ function addToCart(item, param, aux) {
                         }
                         break;
 
+                    } else if (CART[j].quantity >= CART[j].stock_x_store && CART[j].stock_x_central_store == 0) {
+
+
+                        console.log('El art. no tiene stcok tienda, añadimos stock online');
+
+                        if ($(".ui-popup-active").length > 0) {
+                            $('[data-role="popup"]').popup("close");
+                        }
+
+                        foundInCart = 1;
+
+                        if (param < 0) {
+
+                            if (CART[j].online_quantity > 0) {
+                                CART[j].online_quantity = CART[j].online_quantity + param;
+                            }
+
+                            CART[j].quantity = CART[j].quantity + parseInt(param);
+                            if (CART[j].quantity <= CART[j].stock_x_store) {
+                                CART[j].store_quantity = CART[j].quantity;
+                            }
+                            CART.ammount = parseFloat((product.price_x_region[0].totalPrice * param)) + parseFloat(CART.ammount);
+
+                            console.log('PRODUCTS[i][id] == item --> foundInCart = 1'); // TEMP !!
+
+                            var precioArticulo = parseInt(CART[j].quantity) * parseFloat(product.price_x_region[0].totalPrice);
+
+                            $("#labelPrecioTotalProducto" + CART[j].id).text(jsonIdiomas.cajas.precio_total_label + formatoNumero(precioArticulo, 2, ",", ".", "€"));
+
+                            displayItemOperations(CART[j].id, parseInt(CART[j].quantity), j);
+
+                            calcularTotalStoreOnline();
+
+                            updateOpcionCompraProducto();
+
+                            if (CART[j].quantity == 0) // TEMP !!
+                                deleteItemCart(j);
+
+                            if (aux == true) {
+                                setTimeout(function () {
+                                    displayPopupItemList();
+                                }, 50);
+                            }
+
+                            break;
+
+
+                        } else {
+                            
+                            $.jAlert({
+                                'title': 'Alerta',
+                                'content': 'Lo sentimos, no hay más stock disponible.',
+                                'theme': 'gray',
+                                'size': 'xsm'
+                            });
+
+                        }
+                        break;
+
                     } else if (CART[j].stock_x_store == 0 && CART[j].stock_x_central_store == 0) {
 
                         foundInCart = 1;
@@ -962,6 +1021,7 @@ function addToCart(item, param, aux) {
 
                     } else {
 
+                        console.log("ELSE NO HAY STOCK");
                         foundInCart = 1;
                         $.jAlert({
                             'title': 'Alerta',
@@ -976,8 +1036,11 @@ function addToCart(item, param, aux) {
         } //if
     } //for
 
+    //console.log("Producto nuevo");
+    //console.log(product);    
+
     //producto nuevo
-    if (foundInCart == 0) { // --> develop deluxe !! -----------------------
+    if (foundInCart == 0 && (parseInt(product.stock_x_store) > 0 || parseInt(product.stock_x_central_store) > 0)) { // --> develop deluxe !! -----------------------
 
         if (CART.ammount == undefined) {
 
@@ -1024,6 +1087,9 @@ function addToCart(item, param, aux) {
         calcularTotalStoreOnline();
 
         displayItemOperations(item, product.quantity);
+
+    } else if (foundInCart != 1) {
+        alert("No hay stock para este artículo");
     }
 
 
