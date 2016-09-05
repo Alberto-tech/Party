@@ -2446,7 +2446,7 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
 
     } else {
 
-        prodAux = CART;
+        var prodAux = CART;
 
     }
 
