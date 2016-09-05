@@ -106,7 +106,8 @@ function translateButtons(idioma) {
                 "tl_trece": "ROCOGER EN TIENDA",
                 "tl_catorce": "OPCIONES DE PAGO",
                 "tl_quince": "PAGAR EN CAJA",
-                "tl_diezyseis": "Ya puede pasar a pagar su pedido en caja.Identifíquese con su nombre."
+                "tl_diezyseis": "Ya puede pasar a pagar su pedido en caja.Identifíquese con su nombre.",
+                "tl_diezysiete": "NO HAY DISPONIBLE NINGUN PRODUCTO EN TIENDA"
             },
             "pt_inter_pago_login": {
                 "titulo": "INFO USUARIO",
@@ -313,7 +314,8 @@ function translateButtons(idioma) {
                 "tl_trece": "RECOGER EN TIENDA",
                 "tl_catorce": "OPCIONES DE PAGO",
                 "tl_quince": "PAGAR EN CAJA",
-                "tl_diezyseis": "Ya puede pasar a pagar su pedido en caja.Identifíquese con su nombre."
+                "tl_diezyseis": "Ya puede pasar a pagar su pedido en caja.Identifíquese con su nombre.",
+                "tl_diezysiete": "NO HAY DISPONIBLE NINGUN PRODUCTO EN TIENDA"
             },
             "pt_inter_pago_login": {
                 "titulo": "INFO USUARIO",
@@ -532,7 +534,8 @@ function translateButtons(idioma) {
                 "tl_trece": "RECOGER EN TIENDA",
                 "tl_catorce": "OPCIONS DE PAGAMENT",
                 "tl_quince": "PAGAR A CAIXA",
-                "tl_diezyseis": "Ja pot passar a pagar la seva comanda a caja. Identifiquis amb el teu nom."
+                "tl_diezyseis": "Ja pot passar a pagar la seva comanda a caja. Identifiquis amb el teu nom.",
+                "tl_diezysiete": "ELS ARTICLES NOMES ESTAN DISPONIBLES ONLINE"
             },
             "pt_inter_pago_login": {
                 "titulo": "INFO USUARI",
@@ -745,7 +748,8 @@ function translateButtons(idioma) {
                 "tl_trece": "RECOGER EN TIENDA",
                 "tl_catorce": "OPCIONES DE PAGO",
                 "tl_quince": "PAGAR EN CAJA",
-                "tl_diezyseis": "Ya puede pasar a pagar su pedido en caja.Identifíquese con su nombre."
+                "tl_diezyseis": "Ya puede pasar a pagar su pedido en caja.Identifíquese con su nombre.",
+                "tl_diezysiete": "NO HAY DISPONIBLE NINGUN PRODUCTO EN TIENDA"
             },
             "pt_inter_pago_login": {
                 "titulo": "INFO USUARIO",
@@ -952,7 +956,8 @@ function translateButtons(idioma) {
                 "tl_trece": "RECOGER EN TIENDA",
                 "tl_catorce": "OPCIONES DE PAGO",
                 "tl_quince": "PAGAR EN CAJA",
-                "tl_diezyseis": "Ya puede pasar a pagar su pedido en caja.Identifíquese con su nombre."
+                "tl_diezyseis": "Ya puede pasar a pagar su pedido en caja.Identifíquese con su nombre.",
+                "tl_diezysiete": "NO HAY DISPONIBLE NINGUN PRODUCTO EN TIENDA"
             },
             "pt_inter_pago_login": {
                 "titulo": "INFO USUARIO",
