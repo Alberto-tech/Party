@@ -4830,7 +4830,17 @@ function displayDomicilioFacturacionForm() {
         if (OPCIONPEDIDO == 3) {
             console.log("Entra 3 formulario");
             if (checkForm()) {
-                pagarEnCajaPrevioPago();
+                
+                console.log('ProdEnTienda: ' + CART.productosEnTienda + ' ProdSoloEnTienda: ' + CART.productosSoloEnTienda + 'ProdEnWeb: ' + CART.ProdEnWeb + ' ProdSoloEnWeb: ' + CART.ProdSoloEnWeb);
+                if ( CART.productosEnTienda > 0 || CART.productosSoloEnTienda > 0 )	{
+                	console.log('-> pagarEnCajaPrevioPago');
+					pagarEnCajaPrevioPago();
+				}
+				else	{
+					console.log('-> sistemasPago');
+					sistemasPago('si');
+				}
+                
                 //OPCIONPEDIDO = 0;
             }
 
@@ -5036,7 +5046,17 @@ function displayDomicilioForm(destinoEnvio, taxPrice, totalPrice, basePrice) {
         if (OPCIONPEDIDO == 3) {
             console.log("Entra 3");
             if (checkForm()) {
-                pagarEnCajaPrevioPago();
+                
+                console.log('ProdEnTienda: ' + CART.productosEnTienda + ' ProdSoloEnTienda: ' + CART.productosSoloEnTienda + 'ProdEnWeb: ' + CART.ProdEnWeb + ' ProdSoloEnWeb: ' + CART.ProdSoloEnWeb);
+                if ( CART.productosEnTienda > 0 || CART.productosSoloEnTienda > 0 )	{
+                	console.log('-> pagarEnCajaPrevioPago');
+					pagarEnCajaPrevioPago();
+				}
+				else	{
+					console.log('-> sistemasPago');
+					sistemasPago('si');
+				}
+                
                 //OPCIONPEDIDO = 0;
             }
 

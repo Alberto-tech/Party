@@ -1,0 +1,538 @@
+@charset "UTF-8";
+
+/* FILOSOFIA MOVIL FIRST */
+
+/*Desktop*/
+/*@media screen and (min-width:769px)*/
+
+
+/*Tablet*/
+@media screen and (min-width:501px) and (max-width:768px) {
+	
+body {
+	font-size: 14px;
+	line-height: 1.8em;
+	background-color: #000;
+}
+	
+.bg_login {
+	background-image: url(../img/background-phone.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: auto;
+}
+	
+/********************************************************** HEADER */
+	
+#btn-back {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 12000;
+}
+	
+.back {
+	width: 35px;
+}
+
+#btn-menu {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 12000;
+}
+
+.menu {
+	width: 35px;
+}
+	
+.client {
+	width: 230px;
+}
+
+/********************************/
+
+#cabecera-login {
+	height: 55px;
+}
+	
+#cabecera-matt {
+	height: 55px;
+}
+	
+#cabecera-client {
+	height: 60px;
+}
+	
+.page-name {
+	font-size: 18px;
+	padding-top:13px;
+}
+	
+.page-name-logo {
+	padding-top:7px;
+}
+
+.logo-regular {
+	width: 210px;
+}
+
+/********************************************************** LOGIN SCREEN */
+
+.content {
+	position: relative;
+	margin: 0 auto;
+	width: 55%;
+	padding: 100px 0 0 0;
+	text-align: left;
+}
+	
+.input-login {
+	width: 100%;
+	height: 45px;
+	background-color: white;
+	padding-left: 10px;
+	border: 1px solid #0c0c0c;
+	font-size: 12px;
+	color: #0c0c0c;
+}
+
+.input-group {
+	padding-bottom: 20px;
+}
+	
+.space-sub-2 {
+	padding-bottom:60px;
+}
+	
+/********************************************************** HOME SCREEN */
+
+.title_page_div {
+	width: 100%;
+	display: block;
+}
+	
+.row_home {
+	width: 100%;
+	padding: 40px 0 20px 0;
+	text-align: center;
+}
+
+.th_image {
+	margin: 0 auto;
+	display: inline-block;
+	width: 250px;
+	height: 160px;
+	background-color: #ccc;
+	margin: 5px;
+}
+
+.pill_image {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin: 0 auto;
+	display: inline-block;
+	width: 100%;
+	height: 30%;
+	background-color: #0081b2;
+	opacity: 0.7;
+	z-index: 200;
+}
+	
+.name_image {
+	line-height: 2.6em;
+	font-size: 18px;
+	letter-spacing: 0.02em;
+}
+	
+/********************************************************** SPACES LIST SCREEN */
+	
+.row_spaces {
+	display: block;
+	width: 90%;
+}
+
+.opt-left {
+	width: 100%;
+	display: block;
+}
+
+.opt-right {
+	width: 100%;
+	display: block;
+}
+	
+/********************************************************** BUTTONS */
+	
+.btn {
+	height: 40px;
+	line-height: 3.1em;
+	font-size: 14px;
+}
+	
+.btn-small {
+	height: 40px;
+}
+	
+/********************************************************** FOOTER */
+
+.lang {
+	display: none;
+}
+	
+.lang_phone {
+	display: block;
+	width: 100%;
+	text-align: center;
+	padding-bottom: 6px;
+	padding-top: 12px;
+	border-bottom: 1px solid #0081b2;
+	/*background-color: #0c0c0c;*/
+	background-color: rgba( 53, 48, 45, .8 );
+	border-top: 1px solid #0081b2;
+
+}
+
+.flag {
+	width: 30px;
+	height: 30px;
+	margin: 0 11px;
+}
+
+#pie {
+	position: fixed;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	clear: left;
+	padding-top: 40px;
+	z-index: 9000! important;
+}
+	
+.base {
+	display: none;
+}
+	
+/* Guardado por si a caso
+.base {
+	font-size:12px;
+	font-weight: 500;
+	padding: 8px 20px 8px 20px;
+	text-align: center;
+}
+*/
+
+.footer_left {
+	display: none;
+}
+	
+.footer_right {
+	display: none;
+}
+
+/* Guardado por si a caso
+.footer_right {
+	float:none;
+	margin: 0 auto;
+	width: 100%;
+	text-align: center;
+	padding-right: 0;
+	height: 60px;
+}*/
+	
+.space_bottom {
+	padding-bottom:15px;
+}
+	
+.youtter {
+	width: 120px;
+	height: 38px;
+}
+
+.lemon {
+	width: 90px;
+	height: 38px;
+}
+
+.tech {
+	width: 160px;
+	height: 38px;
+}
+
+}
+
+
+/*************************************************************************************************************/
+/*************************************************************************************************************/
+/*************************************************************************************************************/
+/*************************************************************************************************************/
+/*************************************************************************************************************/
+/*************************************************************************************************************/
+/*************************************************************************************************************/
+/*************************************************************************************************************/
+/*************************************************************************************************************/
+
+
+/*Phone*/
+@media screen and (min-width : 320px) and (max-width : 500px) {
+
+body {
+	font-size: 13px;
+	line-height: 1.8em;
+	background-color: #000;
+}
+	
+.bg_login {
+	background-image: url(../img/background-phone.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/********************************************************** HEADER */
+
+#btn-back {
+	position: absolute;
+	top: 7px;
+	left: 10px;
+	z-index: 12000;
+}
+	
+.back {
+	width: 25px;
+}
+
+#btn-menu {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 12000;
+}
+
+.menu {
+	width: 30px;
+}
+	
+.client {
+	width: 200px;
+}
+	
+/********************************/
+
+#cabecera-login {
+	height: 45px;
+}
+	
+#cabecera-matt {
+	height: 45px;
+}
+	
+#cabecera-client {
+	height: 70px;
+}
+	
+.page-name {
+	font-size: 14px;
+	padding-top:7px;
+}
+	
+.page-name-logo {
+	padding-top:0px;
+}
+
+.logo-regular {
+	width: 180px;
+}
+
+/********************************************************** BUTTONS */
+
+.btn {
+	height: 40px;
+}
+	
+.btn-small {
+	height: 40px;
+}
+	
+/********************************************************** LOGIN SCREEN */
+
+.content {
+	position: relative;
+	margin: 0 auto;
+	width: 70%;
+	padding: 10px 0 0 0;
+	text-align: left;
+}
+	
+.input-login {
+	width: 100%;
+	height: 45px;
+	background-color: white;
+	padding-left: 10px;
+	border: 1px solid #0c0c0c;
+	font-size: 12px;
+	color: #0c0c0c;
+}
+	
+.input-group {
+	padding-bottom: 12px;
+}
+
+.space-sub-2 {
+	padding-bottom:30px;
+}
+	
+/********************************************************** HOME SCREEN */
+
+.title_page_div {
+	width: 100%;
+	display: block;
+}
+	
+.title_page {
+	font-size: 14px;
+	line-height: 1.1em;
+	font-weight: 700;
+}
+	
+.row_home {
+	width: 100%;
+	padding: 40px 0 40px 0;
+	text-align: center;
+}
+
+.th_image {
+	margin: 0 auto;
+	display: inline-block;
+	width: 160px;
+	height: 100px;
+	background-color: #ccc;
+	margin: 5px;
+}	
+	
+.name_image {
+	line-height: 2.1em;
+	font-size: 14px;
+	letter-spacing: 0.02em;
+}
+	
+.line_vertical {
+	height:17px;
+} 
+	
+/********************************************************** SPACES LIST SCREEN */
+	
+.row_spaces {
+	width: 95%;
+	padding: 20px 0 100px 0;
+}
+	
+.opt-left {
+	width: 100%;
+	display: block;
+}
+
+.opt-right {
+	width: 100%;
+	display: block;
+}
+	
+	
+.content-left {
+	width: 100%;
+}
+
+.content-right {
+	width: 100%;
+	padding: 8px 0 0 8px;
+}
+	
+/********************************************************** FOOTER */
+
+#pie {
+	position: fixed;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	clear: left;
+	padding-top: 40px;
+	z-index: 9000! important;
+}
+	
+.lang {
+	display: none;
+}
+	
+.lang_phone {
+	display: block;
+	width: 100%;
+	text-align: center;
+	padding-bottom: 6px;
+	padding-top: 12px;
+	border-bottom: 1px solid #0081b2;
+	/*background-color: #0c0c0c;*/
+	background-color: rgba( 53, 48, 45, .8 );
+	border-top: 1px solid #0081b2;
+}
+
+.flag {
+	width: 30px;
+	height: 30px;
+	margin: 0 11px;
+}
+		
+/* Guardado por si a caso
+.base {
+	font-size:10px;
+	font-weight: 500;
+	padding: 8px 20px 8px 20px;
+	text-align: center;
+}
+*/
+	
+.base {
+	display: none;
+}
+
+.footer_left {
+	display: none;
+}
+	
+.footer_right {
+	display: none;
+}
+
+/* Guardado por si a caso
+.footer_right {
+	float:none;
+	margin: 0 auto;
+	width: 100%;
+	text-align: center;
+	padding-right: 0;
+	height: 50px;
+}*/
+	
+.space_bottom {
+	padding-bottom:15px;
+}
+	
+.youtter {
+	width: 97px;
+	height: 25px;
+	margin-left: 5px;
+}
+
+.lemon {
+	width: 65px;
+	height: 25px;
+	margin-left: 5px;
+}
+
+.tech {
+	width: 110px;
+	height: 25px;
+	margin-left: 5px;
+}
+	
+}

@@ -1,0 +1,898 @@
+@charset "UTF-8";
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,200,300,500,700,800&subset=latin,latin-ext);
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+/* NAVIGATOR RESET STYLES */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	text-decoration: none;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	background-color: #000;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* ------------------------------------------------------------------------------- */
+
+/* GENERIC */
+
+/* SUMA PADDINGS-BORDERS-MARGINGS CON TOTAL DE CAJAS */
+
+*{
+	box-sizing: border-box;
+}
+
+/* TIPOGRAFIA CARGADA EN SERVIDOR */
+
+/*@font-face{
+	font-family: myfont;
+	src: url(fontts/myfont.woff) format("woff");
+	font-weight: normal;
+	font-style: normal;
+}*/
+
+img {
+	max-width: 100%;
+}
+
+h1 {
+}
+
+h2 {
+	font-size: 18px;
+}
+
+h3 {
+	font-size: 16px;
+}
+
+h4 {
+	font-size: 14px;
+}
+
+h5 {
+	font-size: 10px;
+}
+
+h6 {
+	font-size: 8px;
+}
+
+/*********************************************************** BODY */
+
+body {
+	position: relative;
+	display: block;
+	color: #0c0c0c;
+	font-size: 13px;
+	line-height: 1.8em;
+	letter-spacing: 0.05em;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 200;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	background-color: white;
+}
+
+.bg_login {
+	background-image: url(../img/background.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.bg_others {
+	background-color: white;
+}
+
+/*********************************************************** HEADERS */
+
+#btn-back {
+	position: absolute;
+	top: 10px;
+	left: 25px;
+	z-index: 12000;
+}
+
+.back {
+	width: 30px;
+}
+
+#btn-menu {
+	position: absolute;
+	top: 10px;
+	right: 25px;
+	z-index: 12000;
+}
+
+.menu {
+	width: 30px;
+}
+
+/********************************/
+
+#cabecera-login {
+	position: relative;
+	top: 0px! important;
+	display: block;
+	width: 100%;
+	height: 55px;
+	background-color: rgba( 53, 48, 45, .7 );
+	text-align: center;
+	padding-top:7px;
+	border-bottom: 1px solid #0081b2;
+}
+
+#cabecera-matt {
+	position: relative;
+	top: 0px! important;
+	display: block;
+	width: 100%;
+	height: 55px;
+	background-color: #0c0c0c;
+	text-align: center;
+	padding-top:7px;
+	border-bottom: 1px solid #0081b2;
+}
+
+.page-name {
+	font-size: 16px;
+	line-height: normal;
+	font-weight: 700;
+	color: white;
+	padding-top:10px;
+	text-align: center;
+}
+
+.page-name-logo {
+	font-size: 16px;
+	line-height: normal;
+	font-weight: 700;
+	color: white;
+	padding-top:7px;
+	text-align: center;
+}
+
+.logo-regular {
+	width: 210px;
+}
+
+#cabecera-client {
+	position: relative;
+	top: 0px! important;
+	display: block;
+	width: 100%;
+	height: 80px;
+	background-color: transparent;
+	padding-top:5px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.btn-client {
+}
+
+.client {
+}
+
+/********************************************************** LOGIN SCREEN */
+
+#login {
+	position: relative;
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+	font-weight: 700;
+}
+
+.content {
+	position: relative;
+	margin: 0 auto;
+	width: 300px;
+	padding: 80px 0 0 0;
+	text-align: left;
+	height: 500px;
+}
+
+.form_login {
+	display: block;
+	width: 100%;
+	text-align: left;
+}
+
+.input-group {
+	position: relative;
+	float: left;
+	display: block;
+	width: 100%;
+	padding-bottom: 30px;
+}
+
+.input-text-login {
+	display: block;
+	color: white;
+	font-weight: 500;
+	padding-bottom: 3px;
+	width: 100%;
+}
+
+.input-login {
+	width: 100%;
+	height: 40px;
+	background-color: white;
+	padding-left: 10px;
+	border: 1px solid #0c0c0c;
+	color: #0c0c0c;
+}
+
+.icnos_izquierdos {
+	float: left;
+	display: inline;
+}
+
+.white-text {
+	color: white;
+	font-weight: 500;
+	line-height: 1.5;
+}
+
+.new_pass {
+	width: 27px;
+	padding-right: 5px;
+}
+
+.new_us {
+	width: 50px;
+	padding-right: 5px;
+}
+
+a.login {
+	color:#fff;
+	font-weight: 500;
+	line-height: 1.5em;
+	text-decoration: underline;
+}
+
+a.login:hover {
+	color: #0081b2;
+}
+
+a.login:visited {
+	color: #fff;
+}
+
+.specific_line {
+	line-height: 1.7em;
+}
+
+.space_bottom {
+	padding-bottom:15px;
+}
+
+.space-sub-2 {
+	padding-bottom:60px;
+}
+
+/********************************************************** NEW USER SCREEN */
+
+#new_user {
+	position: relative;
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+	font-weight: 700;
+}
+
+.content-new-user {
+	position: relative;
+	margin: 0 auto;
+	width: 300px;
+	padding: 30px 0 0 0;
+	text-align: left;
+	height: 500px;
+}
+
+.form_new-user {
+	display: block;
+	width: 100%;
+	text-align: left;
+}
+
+.input-group-new-user {
+	position: relative;
+	float: left;
+	display: block;
+	width: 100%;
+	padding-bottom: 20px;
+}
+
+.input-text-new-user {
+	display: block;
+	color: white;
+	font-weight: 500;
+	padding-bottom: 3px;
+	width: 100%;
+	color: #0c0c0c;
+}
+
+.input-new-user {
+	width: 100%;
+	height: 40px;
+	background-color: white;
+	padding-left: 10px;
+	border: 1px solid #0c0c0c;
+	color: #0c0c0c;
+}
+
+.request-fields {
+	text-align: left;
+	font-size:12px;
+	line-height: 1.2em;
+}
+
+.space-sup {
+	padding-top:20px;
+}
+
+.space-sub {
+	padding-bottom:20px;
+}
+
+.info-form {
+	color:#7c6d65;
+}
+
+.selec-style {
+	font-size:15px;
+	padding-left:20px;
+	color:#ff0000;
+}
+
+/********************************************************** RESET PASS SCREEN */
+
+#reset_pass {
+	position: relative;
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+	font-weight: 700;
+}
+
+.content-reset-pass {
+	position: relative;
+	margin: 0 auto;
+	width: 300px;
+	padding: 30px 0 0 0;
+	text-align: left;
+	height: 500px;
+}
+
+.form_reset-pass {
+	display: block;
+	width: 100%;
+	text-align: left;
+}
+
+.input-group-reset-pass {
+	position: relative;
+	float: left;
+	display: block;
+	width: 100%;
+	padding-bottom: 20px;
+}
+
+.input-text-reset-pass {
+	display: block;
+	color: white;
+	font-weight: 500;
+	padding-bottom: 3px;
+	width: 100%;
+	color: #0c0c0c;
+}
+
+.input-reset-pass {
+	width: 100%;
+	height: 40px;
+	background-color: white;
+	padding-left: 10px;
+	border: 1px solid #0c0c0c;
+	color: #0c0c0c;
+}
+
+.description {
+	text-align: left;
+	font-size:13px;
+	line-height: 1.2em;
+	font-weight: 400;
+}
+
+/********************************************************** POPUP SCREEN */
+
+#popup {
+	position: relative;
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+	font-weight: 700;
+}
+
+.txt-popup {
+	text-align: left;
+	font-size:13px;
+	line-height: 1.2em;
+	font-weight: 400;
+}
+
+.content-popup {
+	position: relative;
+	margin: 0 auto;
+	width: 300px;
+	padding: 30px 0 0 0;
+	text-align: left;
+	height: 500px;
+}
+
+.form_popup {
+	display: block;
+	width: 100%;
+	text-align: left;
+}
+
+.input-group-popup {
+	position: relative;
+	float: left;
+	display: block;
+	width: 100%;
+	padding-bottom: 20px;
+}
+
+.input-popup {
+	width: 100%;
+	height: 40px;
+	background-color: white;
+	padding-left: 10px;
+	border: 1px solid #0c0c0c;
+	color: #0c0c0c;
+	font-size:12px;
+}
+
+.icno-alert {
+	width: 20px;
+	padding-bottom: 10px;
+}
+
+.div-icno-alert {
+	width: 100%;
+	text-align:left;
+}
+
+/********************************************************** HOME SCREEN */
+
+#home {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.title_page_div {
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	/*height: 15px;*/
+	margin-top: 20px;
+}
+
+.line_vertical {
+	position: relative;
+	float: left;
+	width: 10%;
+	border-right: 4px solid #0081b2;
+	height:26px;
+} 
+
+.title_page {
+	position: relative;
+	float: left;
+	width:80%;
+	padding: 0 0 10px 6px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 700;
+	font-size: 17px;
+	vertical-align: middle;
+}
+
+.txt-title {
+	line-height: 1.3em;
+}
+
+.row_home {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	width: 90%;
+	text-align: center;
+	padding: 40px 0;
+}
+
+.th_image {
+	position: relative;
+	margin: 0 auto;
+	display: inline-block;
+	width: 300px;
+	height: 200px;
+	margin: 10px 10px;
+	z-index: 100;
+	overflow: hidden;
+	margin: 5px;
+}
+
+.sp_image {
+	width: 300px;
+}
+
+.pill_image {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin: 0 auto;
+	display: inline-block;
+	width: 100%;
+	height: 30%;
+	background-color: #0081b2;
+	opacity: 0.7;
+	z-index: 200;
+}
+
+.name_image {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin: 0 auto;
+	display: inline-block;
+	width: 100%;
+	height: 30%;
+	z-index: 300;
+	overflow: auto;
+	color: white;
+	/*color: #0c0c0c;*/
+	vertical-align: middle;
+	line-height: 3.6em;
+	font-size: 16px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 800;
+	text-align: center;
+}
+
+.image-btn {}
+
+/********************************************************** ESPACIOS LISTA SCREEN */
+
+#espacios {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.row_spaces {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	width: 90%;
+	padding: 40px 0;
+}
+
+.opt-left {
+	position: relative;
+	float: left;
+	width: 50%;
+	display: inline-block;
+	padding: 15px 7px;
+}
+
+.opt-right {
+	position: relative;
+	float: left;
+	width: 50%;
+	display: inline-block;
+	padding: 15px 7px;
+}
+
+.space_name {
+	background-color: #ebebeb;
+	padding: 15px 0 15px 15px;
+	color: #0c0c0c;
+	font-size: 21px;
+	font-weight: 300;
+	width: 100%;
+	display: block;
+}
+
+.space-group {
+	width: 100%;
+	display: block;
+	margin: 10px 0;
+	height: 200px;
+}
+
+.content-left {
+	position: relative;
+	display: inline-block;
+	float: left;
+	width: 40%;
+}
+
+.content-right {
+	position: relative;
+	display: inline-block;	
+	float: left;
+	width: 55%;
+	line-height: 1.2em;
+	font-size: 13px;
+	overflow:hidden;
+	padding: 8px 0 0 12px;
+}
+
+.detail-img {
+	width: 100%;
+}
+
+.intro {
+	font-size: 13px;
+	line-height: 1.1em;
+}
+
+.strong {
+	font-weight: 700;
+}
+
+.price {}
+
+.more-info {
+	vertical-align: middle;
+	margin-left: 10px;
+	width: 32px;
+	height: 31px;
+}
+
+/********************************************************** PUNTO VERDE */
+
+#green-point {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.row_puntoverde {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	width: 90%;
+	padding: 40px 0;
+}
+
+.li-a {
+	background-color: #dedede;
+	padding: 12px 10px;
+	border-bottom: 1px solid white;
+}
+
+.li-b {
+	background-color: #cecece;
+	padding: 12px 10px;
+	border-bottom: 1px solid white;
+}
+
+.txt-puntv {
+	color:  #0c0c0c;
+	font-size: 14px;
+	font-weight: 500;
+	vertical-align:inherit;
+	padding-left: 7px;
+	line-height: 2.4em;
+}
+
+.icno-puntv {
+	width: 25px;
+	float: left;
+	display: inline;
+}
+
+.tipos {
+	float: right;
+	width: 30%;
+	padding-top: 7px;
+}
+
+.icno-tipo {
+	width: 25px;
+	float: right;
+	display: inline;
+}
+
+/********************************************************** BUTTONS */
+
+.btn {
+	width: 100%;
+	height: 40px;
+	background-color: #0081b2;
+	font-size: 13px;
+	text-align: center;
+	font-weight: 700;
+	line-height: 3em;
+	color: #0c0c0c;
+	/*margin-bottom: 25px;*/
+	border: 0px solid #0c0c0c;
+	border-radius: 0px;
+	-webkit-appearance: none;
+}
+
+.btn-register {
+	width: 70%;
+	height: 40px;
+	background-color: #0081b2;
+	font-size: 13px;
+	text-align: left;
+	font-weight: 700;
+	line-height: 3em;
+	color: #0c0c0c;
+	/*margin-bottom: 20px;*/
+	border: 0px solid #0c0c0c;
+	border-radius: 0px;
+	-webkit-appearance: none;
+}
+
+.icno_btn {
+	float: left;
+	display: inline;
+	padding: 5px 5px 0 5px;
+}
+
+.btn-small {
+	position: relative;
+	float: left;
+	width: 45%;
+	height: 30px;
+	background-color: #0081b2;
+	font-size: 13px;
+	text-align: center;
+	font-weight: 700;
+	line-height: 2.4em;
+	color: #0c0c0c;
+	margin-right: 5px;
+	border: 0px solid #0c0c0c;
+	display: inline-block;
+	-webkit-appearance: none;
+}
+
+
+/********************************************************** FOOTER */
+
+#pie {
+	position: fixed;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	clear: left;
+	padding-top: 0;
+}
+
+.lang_phone {
+	display: none;
+}
+
+.footer_left {
+	position: relative;
+	float: left;
+	width: 30%;
+	text-align: left;
+	padding-left: 20px;
+	background-color: #0c0c0c! important; 
+	height: 62px;
+	padding-top: 20px;
+}
+
+.lang {
+    padding-left: 20px;
+    text-align: left;
+}
+
+.flag {
+	width: 25px;
+	height: 25px;
+	margin: 0 3px;
+}
+
+.footer_right {
+	position: relative;
+	float: right;
+	width: 70%;
+	text-align: right;
+	padding-right: 50px;
+	background-color: #0c0c0c! important; 
+	height: 62px;
+	padding-top: 10px;
+}
+
+.youtter {
+	width: 120px;
+	height: 38px;
+	margin-left: 18px;
+}
+
+.lemon {
+	width: 90px;
+	height: 38px;
+	margin-left: 18px;
+}
+
+.tech {
+	width: 160px;
+	height: 38px;
+	margin-left: 18px;
+}
+
+.base {
+	position:relative;
+	float:left;
+	width: 100%;
+	display: block;
+	background-color: #0081b2;
+	text-align: right;
+	padding: 8px 60px 8px 60px;
+}
+
+a.politica {
+	color:#0c0c0c;
+}
+
+a.politica:hover {
+	text-decoration: underline;
+}

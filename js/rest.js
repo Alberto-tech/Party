@@ -41,13 +41,20 @@ function getLogin(usario, contraseña) {
 
                     } else if ((OPCIONPEDIDO == 3 && OPCIONENTREGA == 'shop' && OPCIONENVIO == 2) || (OPCIONPEDIDO == 2 && OPCIONENTREGA == 'shop' && OPCIONENVIO == 2)) {
 
-                        pagarEnCajaPrevioPago();
+                        
+                        console.log('ProdEnTienda: ' + CART.productosEnTienda + ' ProdSoloEnTienda: ' + CART.productosSoloEnTienda + 'ProdEnWeb: ' + CART.ProdEnWeb + ' ProdSoloEnWeb: ' + CART.ProdSoloEnWeb);
+	                    if ( CART.productosEnTienda > 0 || CART.productosSoloEnTienda > 0 )	{
+	                    	console.log('-> pagarEnCajaPrevioPago');
+							pagarEnCajaPrevioPago();
+						}
+						else	{
+							console.log('-> sistemasPago');
+							sistemasPago('si');
+						}
 
                     } else {
                         displayDomicilioForm(OPCIONENTREGA, SEND_INFO.price_shop.taxPrice, SEND_INFO.price_shop.totalPrice, SEND_INFO.price_shop.basePrice);
                     }
-
-
 
                 }
 
@@ -140,7 +147,15 @@ function getRegistro(usario, contraseña, cod_pos, pago) {
                     $('#login').attr('onclick', "logout()");
                     $("#login").append('<img src="http://partyfiesta.youtter.com/webservices/img/nodos/salir.jpg" style="width: 15px;margin-top: 0px;">');
 
-                    pagarEnCajaPrevioPago();
+					console.log('ProdEnTienda: ' + CART.productosEnTienda + ' ProdSoloEnTienda: ' + CART.productosSoloEnTienda + 'ProdEnWeb: ' + CART.ProdEnWeb + ' ProdSoloEnWeb: ' + CART.ProdSoloEnWeb);
+                    if ( CART.productosEnTienda > 0 || CART.productosSoloEnTienda > 0 )	{
+                    	console.log('-> pagarEnCajaPrevioPago');
+						pagarEnCajaPrevioPago();
+					}
+					else	{
+						console.log('-> sistemasPago');
+						sistemasPago('si');
+					}
 
                 } else {
                     console.log(response);
@@ -2496,6 +2511,7 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
 
         deliveryAddress: deliveryAddress,
         deliveryPostalCode: deliveryPostalCode,
+        deliveryNumber:deliveryNumber,  
         deliveryCity: deliveryCity,
         deliveryProvince: deliveryProvince,
         deliveryCountry: deliveryCountry,
@@ -2588,8 +2604,6 @@ function sendBasketAndOrder(paymentMethod) { //esta funcion nos devuelve la info
                 alert("Error de TimeOut... compruebe su conexion de internet");
 
             } else {
-
-                console.log(response);
 
                 $("#texto_popup").text("Error de ws");
                 $('#popupAlert').popup('open');

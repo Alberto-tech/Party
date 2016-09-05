@@ -103,7 +103,7 @@ function translateButtons(idioma) {
                 "tl_diez": "RECOGER LO DISPONIBLE EN TIENDA Y EL RESTO ONLINE",
                 "tl_once": "PEDIDO ONLINE(TODO EL PEDIDO)",
                 "tl_doce": "ENVIO A DOMICILIO 48H",
-                "tl_trece": "CLICK AND COLLECT 48H",
+                "tl_trece": "ROCOGER EN TIENDA",
                 "tl_catorce": "OPCIONES DE PAGO",
                 "tl_quince": "PAGAR EN CAJA",
                 "tl_diezyseis": "Ya puede pasar a pagar su pedido en caja.Identifíquese con su nombre."
@@ -157,6 +157,7 @@ function translateButtons(idioma) {
             "soloEnWeb": "ONLY WEB",
             "btn_finalizar_pedido": "Finalizar pedido",
             "btn_paypal": "PAGAR POR PAYPAL",
+            "btn_tarjeta": "PAGAR EN DATAFONO",
             "pago_caja": "PAGO EN CAJA"
 
         }
@@ -309,7 +310,7 @@ function translateButtons(idioma) {
                 "tl_diez": "RECOGER LO DISPONIBLE EN TIENDA Y EL RESTO ONLINE",
                 "tl_once": "PEDIDO ONLINE(TODO EL PEDIDO)",
                 "tl_doce": "ENVIO A DOMICILIO 48H",
-                "tl_trece": "CLICK AND COLLECT 48H",
+                "tl_trece": "RECOGER EN TIENDA",
                 "tl_catorce": "OPCIONES DE PAGO",
                 "tl_quince": "PAGAR EN CAJA",
                 "tl_diezyseis": "Ya puede pasar a pagar su pedido en caja.Identifíquese con su nombre."
@@ -363,6 +364,7 @@ function translateButtons(idioma) {
             "soloEnWeb": "SOLO WEB",
             "btn_finalizar_pedido": "Finalizar pedido",
             "btn_paypal": "PAGAR POR PAYPAL",
+            "btn_tarjeta": "PAGAR EN DATAFONO",
             "pago_caja": "PAGO EN CAJA"
         }
 
@@ -527,7 +529,7 @@ function translateButtons(idioma) {
                 "tl_diez": "RECOLLIR LO DISPONIBLE A LA TIENDA I LA RESTA ONLINE",
                 "tl_once": "COMANDA ONLINE(TOTA LA COMANDA)",
                 "tl_doce": "ENVIAMENT A DOMICILI 48H",
-                "tl_trece": "CLICK AND COLLECT 48H",
+                "tl_trece": "RECOGER EN TIENDA",
                 "tl_catorce": "OPCIONS DE PAGAMENT",
                 "tl_quince": "PAGAR A CAIXA",
                 "tl_diezyseis": "Ja pot passar a pagar la seva comanda a caja. Identifiquis amb el teu nom."
@@ -581,6 +583,7 @@ function translateButtons(idioma) {
             "soloEnWeb": "UNICAMENT WEB",
             "btn_finalizar_pedido": "finalitzar comanda",
             "btn_paypal": "PAGAR PAYPAL",
+            "btn_tarjeta": "PAGAR EN DATAFONO",
             "pago_caja": "PAGAMENT EN CAIXA"
 
         }
@@ -739,7 +742,7 @@ function translateButtons(idioma) {
                 "tl_diez": "RECOGER LO DISPONIBLE EN TIENDA Y EL RESTO ONLINE",
                 "tl_once": "PEDIDO ONLINE(TODO EL PEDIDO)",
                 "tl_doce": "ENVIO A DOMICILIO 48H",
-                "tl_trece": "CLICK AND COLLECT 48H",
+                "tl_trece": "RECOGER EN TIENDA",
                 "tl_catorce": "OPCIONES DE PAGO",
                 "tl_quince": "PAGAR EN CAJA",
                 "tl_diezyseis": "Ya puede pasar a pagar su pedido en caja.Identifíquese con su nombre."
@@ -793,6 +796,7 @@ function translateButtons(idioma) {
             "soloEnWeb": "Només WEB",
             "btn_finalizar_pedido": "Finalizar pedido",
             "btn_paypal": "PAGAR POR PAYPAL",
+            "btn_tarjeta": "PAGAR EN DATAFONO",
             "pago_caja": "PAGO EN CAJA"
         }
 
@@ -945,7 +949,7 @@ function translateButtons(idioma) {
                 "tl_diez": "RECOGER LO DISPONIBLE EN TIENDA Y EL RESTO ONLINE",
                 "tl_once": "PEDIDO ONLINE(TODO EL PEDIDO)",
                 "tl_doce": "ENVIO A DOMICILIO 48H",
-                "tl_trece": "CLICK AND COLLECT 48H",
+                "tl_trece": "RECOGER EN TIENDA",
                 "tl_catorce": "OPCIONES DE PAGO",
                 "tl_quince": "PAGAR EN CAJA",
                 "tl_diezyseis": "Ya puede pasar a pagar su pedido en caja.Identifíquese con su nombre."
@@ -999,6 +1003,7 @@ function translateButtons(idioma) {
             "soloEnWeb": "ONLY WEB",
             "btn_finalizar_pedido": "Finalizar pedido",
             "btn_paypal": "PAGAR POR PAYPAL",
+            "btn_tarjeta": "PAGAR EN DATAFONO",
             "pago_caja": "PAGO EN CAJA"
         }
 
