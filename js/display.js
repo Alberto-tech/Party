@@ -4043,7 +4043,8 @@ function opcionesPago() { //TEMP
         OPCIONENVIO = 1;
         var html = '<div>' +
             '<center>' +
-            '<h2 style="margin: 1% 0 1% 0;color:#0197d4">' + jsonIdiomas.proceso_pago.tl_cero + '</h2>' + //'<br>' + jsonIdiomas.proceso_pago.tl_dos 
+            //'<h2 style="margin: 1% 0 1% 0;color:#0197d4">' + jsonIdiomas.proceso_pago.tl_cero + '</h2>' + //'<br>' + jsonIdiomas.proceso_pago.tl_dos 
+            '<h2 style="margin: 1% 0 1% 0;color:#0197d4">' + jsonIdiomas.proceso_pago.tl_uno + '<br>' + jsonIdiomas.proceso_pago.tl_dos + '</h2>' + //'<br>' + jsonIdiomas.proceso_pago.tl_dos 
             '<h4 style="margin: 0 0 1% 0;color:#0197d4">' + jsonIdiomas.proceso_pago.tl_pregunta + '</h4>' +
             '<div style="width: 50%;margin: 0% 0% 1% 0%;" onclick="pagarEnCaja();">' +
             '<div style="background-color: #0197d4;color: white;text-align: left;width: 100%;height: 45px;line-height: 45px;" class="ui-grid-a"><div class="ui-block-a" style="width: 10%;height: 45px;"><img src="http://partyfiesta.youtter.com/app/alb/img/tienda.png" style="width: 45px;"></div><div class="ui-block-b" style="width: 90%;height: 45px;text-align: left;"><label>' + jsonIdiomas.proceso_pago.tl_ocho + '</label></div></div>' +
