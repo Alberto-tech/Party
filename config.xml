@@ -67,7 +67,7 @@
     <plugin name="org.apache.cordova.inappbrowser" />
     <plugin name="org.apache.cordova.media" />
     <plugin name="org.apache.cordova.network-information" />
-    <gap:plugin name="org.apache.cordova.splashscreen" spec="0.2.7"/>
+    <gap:plugin name="org.apache.cordova.splashscreen"/>
     <plugin name="org.apache.cordova.vibration" />
     <gap:plugin name="com.phonegap.plugin.statusbar" />
 
