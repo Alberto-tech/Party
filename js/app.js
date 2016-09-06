@@ -48,9 +48,6 @@ Esto se ejecuta antes que la app se inicie
 ******************************************/
 $(document).ready(function () {
     
-    navigator.splashscreen.hide();
-
-
     $(window).scroll(function () {
 
         //console.log("Mas scroll y reinicar tiempo salvapantallas");
@@ -63,7 +60,6 @@ $(document).ready(function () {
         //console.log("Reiniciamos el salvapantallas");
         clearTimeout(protector);
 
-        //protector = setInterval(function () {
         protector = setTimeout(function () {
             logout();
             displayScreenSaver();
