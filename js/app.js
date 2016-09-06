@@ -24,7 +24,7 @@ $(document).bind("mobileinit", function () {
     }
 
     //Cargamos el idioma por defecto de la app
-    translateButtons("ca");
+    translateButtons("es");
 
 
 });
@@ -47,6 +47,8 @@ document.onclick = function (event) {
 Esto se ejecuta antes que la app se inicie
 ******************************************/
 $(document).ready(function () {
+    
+    navigator.splashscreen.hide();
 
 
     $(window).scroll(function () {
